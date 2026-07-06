@@ -30,6 +30,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isComingSoon = process.env.VERCEL === '1' || process.env.NEXT_PUBLIC_SHOW_COMING_SOON === 'true';
+
   return (
     <html
       lang="en"
@@ -37,9 +39,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground selection:bg-brand-pink selection:text-white">
         <SmoothScroll />
-        <Header />
-        <main className="flex-grow pt-24">{children}</main>
-        <Footer />
+        {!isComingSoon && <Header />}
+        <main className="flex-1 w-full">{children}</main>
+        {!isComingSoon && <Footer />}
       </body>
     </html>
   );
