@@ -1,10 +1,15 @@
 import { Hero } from "@/components/home/Hero";
 import { TrustCards } from "@/components/home/TrustCards";
 import { ProductCard } from "@/components/ui/ProductCard";
+import { ComingSoon } from "@/components/home/ComingSoon";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export default function Home() {
+  if (process.env.NEXT_PUBLIC_SHOW_COMING_SOON === 'true') {
+    return <ComingSoon />;
+  }
+
   return (
     <>
       <Hero />
