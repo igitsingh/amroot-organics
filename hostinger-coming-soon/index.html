@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amroot Organics | Coming Soon</title>
+    
+    <!-- Google Fonts for Editorial Look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configure Tailwind with Brand Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            charcoal: '#1F2937', // Update with actual hex if needed
+                            green: '#034F46',
+                            pink: '#F16775',
+                            white: '#FAFAFA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #1F2937;
+            color: #FAFAFA;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .dust-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: url("https://www.transparenttextures.com/patterns/dust.png");
+            opacity: 0.15;
+            mix-blend-mode: overlay;
+            animation: pulse 10s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .ambient-ring-1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .ambient-ring-2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 900px;
+            height: 900px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.25; }
+        }
+
+        /* Initial Fade-in Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.5s; }
+        .delay-3 { animation-delay: 0.7s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center relative font-sans selection:bg-brand-green/30 selection:text-white px-6">
+    
+    <!-- Background Decor -->
+    <div class="dust-pattern"></div>
+    <div class="ambient-ring-1"></div>
+    <div class="ambient-ring-2"></div>
+
+    <!-- Content -->
+    <main class="relative z-10 max-w-3xl w-full text-center flex flex-col items-center">
+        
+        <span class="text-brand-pink text-sm md:text-base font-medium tracking-[0.3em] uppercase mb-8 block fade-in-up">
+            Coming Soon
+        </span>
+
+        <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl tracking-tight mb-8 fade-in-up delay-1">
+            Something exceptional is growing.
+        </h1>
+
+        <p class="text-lg md:text-2xl text-white/50 font-light mb-12 fade-in-up delay-2 leading-relaxed">
+            Amroot Organics is currently invite-only. <br class="hidden md:block" /> Join the waitlist for exclusive early access.
+        </p>
+
+        <!-- Waitlist Form -->
+        <form onsubmit="event.preventDefault();" class="w-full max-w-md flex flex-col gap-4 fade-in-up delay-3">
+            <input 
+                type="email" 
+                placeholder="Enter your business email" 
+                required
+                class="w-full bg-white/5 border border-white/10 rounded-full px-8 py-5 text-center text-white placeholder:text-white/30 focus:outline-none focus:border-brand-green transition-colors text-lg"
+            />
+            <button 
+                type="submit"
+                class="w-full bg-brand-white text-brand-charcoal rounded-full px-8 py-5 font-medium hover:bg-brand-pink hover:text-white transition-colors duration-300 text-lg"
+            >
+                Request Invitation
+            </button>
+        </form>
+
+    </main>
+
+</body>
+</html>
