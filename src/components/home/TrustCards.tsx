@@ -109,25 +109,34 @@ export function TrustCards() {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {TRUST_CARDS.map((card, index) => (
             <motion.div
               key={card.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="group bg-white p-8 rounded-2xl border border-brand-beige/50 hover:border-brand-pink/30 hover:shadow-[0_8px_30px_rgba(45,49,66,0.04)] transition-all duration-500 cursor-default"
+              transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="group relative bg-white px-8 py-10 sm:px-10 sm:py-12 rounded-3xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] cursor-pointer flex flex-col justify-between"
             >
-              <div className="w-12 h-12 rounded-xl bg-brand-beige/30 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-brand-green/5 transition-all duration-500">
-                <card.icon className="w-6 h-6 text-brand-charcoal group-hover:text-brand-green transition-colors duration-500" strokeWidth={1.5} />
+              {/* Animated Hover Border & Shadow */}
+              <div className="absolute inset-0 rounded-3xl border border-transparent group-hover:border-brand-pink/30 group-hover:shadow-[0_0_30px_rgba(240,138,93,0.15)] transition-all duration-500" />
+              
+              <div className="relative z-10 flex flex-col h-full">
+                {/* Icon Wrapper */}
+                <div className="mb-10 text-brand-green/50 group-hover:text-brand-pink group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500 origin-left">
+                  <card.icon className="w-10 h-10" strokeWidth={1.5} />
+                </div>
+                
+                {/* Text Content */}
+                <h3 className="font-serif text-2xl text-brand-charcoal mb-4 group-hover:text-brand-green transition-colors duration-500">
+                  {card.title}
+                </h3>
+                <p className="text-base text-brand-charcoal/60 leading-relaxed font-light mt-auto">
+                  {card.description}
+                </p>
               </div>
-              <h3 className="font-sans font-medium text-lg text-brand-charcoal mb-3 group-hover:text-brand-green transition-colors duration-300">
-                {card.title}
-              </h3>
-              <p className="text-sm text-brand-charcoal/60 leading-relaxed font-light">
-                {card.description}
-              </p>
             </motion.div>
           ))}
         </div>
