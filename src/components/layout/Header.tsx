@@ -76,25 +76,25 @@ export function Header() {
 
       {/* Announcement Bar */}
       <div className={cn(
-        "w-full relative z-10 bg-brand-pink text-brand-charcoal text-[11px] sm:text-xs text-center tracking-widest font-bold uppercase shadow-sm transition-all duration-500 overflow-hidden",
-        scrolled ? "h-0 py-0 opacity-0 border-none" : "h-[32px] py-2 opacity-100"
+        "w-full relative z-10 bg-brand-pink text-brand-charcoal text-[10px] sm:text-xs text-center tracking-widest font-bold uppercase shadow-sm transition-all duration-500 overflow-hidden flex items-center justify-center",
+        scrolled ? "h-0 py-0 opacity-0 border-none" : "h-[24px] sm:h-[32px] py-1 sm:py-2 opacity-100"
       )}>
         amrootorganics.com is our only home
       </div>
 
       <div className={cn(
         "w-full mx-auto px-6 lg:px-8 w-full flex items-center justify-between transition-all duration-500 relative z-10",
-        scrolled ? "h-16" : "h-20"
+        scrolled ? "h-14 sm:h-16" : "h-16 sm:h-20"
       )}>
         {/* Logo */}
         <Link
           href="/"
           className="flex flex-col items-stretch justify-center gap-[0.15rem]"
         >
-          <span className="font-[family-name:var(--font-outfit)] text-[2.2rem] tracking-tight text-brand-white font-semibold lowercase leading-none text-center">
+          <span className="font-[family-name:var(--font-outfit)] text-3xl sm:text-[2.2rem] tracking-tight text-brand-white font-semibold lowercase leading-none text-center">
             amroot
           </span>
-          <span className="font-sans font-medium text-brand-pink text-[12px] uppercase leading-none flex justify-between w-full">
+          <span className="font-sans font-medium text-brand-pink text-[10px] sm:text-[12px] uppercase leading-none flex justify-between w-full">
             <span>O</span><span>R</span><span>G</span><span>A</span><span>N</span><span>I</span><span>C</span><span>S</span>
           </span>
         </Link>
