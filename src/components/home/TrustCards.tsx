@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
   MapPin,
   Sparkles,
@@ -80,12 +81,24 @@ const TRUST_CARDS = [
 ];
 
 export function TrustCards() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const x1 = useTransform(scrollYProgress, [0, 1], [0, -800]);
+  const x2 = useTransform(scrollYProgress, [0, 1], [-800, 0]);
+
+  const row1 = TRUST_CARDS.slice(0, 6);
+  const row2 = TRUST_CARDS.slice(6, 12);
+
   return (
-    <section className="py-24 bg-brand-white relative">
-      <div className="w-full mx-auto px-6 lg:px-8">
+    <section ref={containerRef} className="py-24 bg-brand-white overflow-hidden relative">
+      <div className="w-full mx-auto px-6 lg:px-8 mb-16">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -107,41 +120,55 @@ export function TrustCards() {
             every step is optimized for quality and reliability.
           </motion.p>
         </div>
+      </div>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {TRUST_CARDS.map((card, index) => (
-            <motion.div
-              key={card.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="group relative bg-white px-8 py-10 sm:px-10 sm:py-12 rounded-3xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] cursor-pointer flex flex-col justify-between"
-            >
-              {/* Animated Hover Border & Shadow */}
-              <div className="absolute inset-0 rounded-3xl border border-transparent group-hover:border-brand-pink/30 group-hover:shadow-[0_0_30px_rgba(240,138,93,0.15)] transition-all duration-500" />
-              
-              <div className="relative z-10 flex flex-col h-full">
-                {/* Icon Wrapper */}
-                <div className="mb-10 text-brand-green/50 group-hover:text-brand-pink group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500 origin-left">
-                  <card.icon className="w-10 h-10" strokeWidth={1.5} />
-                </div>
-                
-                {/* Text Content */}
-                <h3 className="font-serif text-2xl text-brand-charcoal mb-4 group-hover:text-brand-green transition-colors duration-500">
-                  {card.title}
-                </h3>
-                <p className="text-base text-brand-charcoal/60 leading-relaxed font-light mt-auto">
-                  {card.description}
-                </p>
-              </div>
-            </motion.div>
+      <div className="flex flex-col gap-6">
+        {/* Row 1 */}
+        <motion.div style={{ x: x1 }} className="flex gap-6 w-max px-6">
+          {row1.map((card, idx) => (
+            <Card key={idx} card={card} />
           ))}
-        </div>
-
+          {row1.map((card, idx) => (
+            <Card key={`dup1-${idx}`} card={card} />
+          ))}
+        </motion.div>
+        
+        {/* Row 2 */}
+        <motion.div style={{ x: x2 }} className="flex gap-6 w-max px-6 ml-[-20vw]">
+          {row2.map((card, idx) => (
+            <Card key={idx} card={card} />
+          ))}
+          {row2.map((card, idx) => (
+            <Card key={`dup2-${idx}`} card={card} />
+          ))}
+        </motion.div>
       </div>
     </section>
+  );
+}
+
+function Card({ card }: { card: typeof TRUST_CARDS[0] }) {
+  return (
+    <motion.div 
+      whileHover={{ y: -8, scale: 1.02 }}
+      className="group relative bg-white px-8 py-10 rounded-3xl min-w-[320px] md:min-w-[400px] flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] cursor-pointer"
+    >
+      <div className="absolute inset-0 rounded-3xl border border-transparent group-hover:border-brand-pink/30 group-hover:shadow-[0_0_30px_rgba(240,138,93,0.15)] transition-all duration-500" />
+      
+      <div className="relative z-10 flex flex-col h-full">
+        {/* Icon Wrapper */}
+        <div className="mb-8 text-brand-green/50 group-hover:text-brand-pink group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500 origin-left">
+          <card.icon className="w-10 h-10" strokeWidth={1.5} />
+        </div>
+        
+        {/* Text Content */}
+        <h3 className="font-serif text-2xl text-brand-charcoal mb-3 group-hover:text-brand-green transition-colors duration-500">
+          {card.title}
+        </h3>
+        <p className="text-base text-brand-charcoal/60 leading-relaxed font-light mt-auto">
+          {card.description}
+        </p>
+      </div>
+    </motion.div>
   );
 }
