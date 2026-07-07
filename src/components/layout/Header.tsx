@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Globe, ChevronDown, ArrowRight } from "lucide-react";
+import { Search, ChevronDown, ArrowRight, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -33,6 +33,8 @@ const RIGHT_LINKS = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [learnOpen, setLearnOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileLearnOpen, setMobileLearnOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,6 +43,16 @@ export function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Prevent scrolling when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => { document.body.style.overflow = "unset"; };
+  }, [mobileMenuOpen]);
 
   return (
     <header
@@ -158,7 +170,103 @@ export function Header() {
             Request Samples
           </Link>
         </div>
+
+        {/* Mobile Hamburger Button */}
+        <div className="flex lg:hidden items-center gap-4">
+          <button className="text-brand-white/90 hover:text-brand-white transition-colors">
+            <Search className="w-5 h-5" strokeWidth={1.5} />
+          </button>
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="text-brand-white p-2 -mr-2 relative z-50"
+          >
+            {mobileMenuOpen ? (
+              <X className="w-6 h-6" strokeWidth={1.5} />
+            ) : (
+              <Menu className="w-6 h-6" strokeWidth={1.5} />
+            )}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Menu Fullscreen Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-brand-green flex flex-col pt-24 px-6 pb-6 overflow-y-auto"
+          >
+            <nav className="flex flex-col gap-6 text-xl font-medium text-brand-white mt-8">
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="hover:text-brand-pink transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+
+              {/* Mobile Learn Accordion */}
+              <div className="flex flex-col">
+                <button 
+                  onClick={() => setMobileLearnOpen(!mobileLearnOpen)}
+                  className="flex items-center justify-between text-left hover:text-brand-pink transition-colors"
+                >
+                  Learn
+                  <ChevronDown className={cn("w-5 h-5 transition-transform", mobileLearnOpen && "rotate-180")} />
+                </button>
+                <AnimatePresence>
+                  {mobileLearnOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden flex flex-col gap-4 mt-4 pl-4 border-l border-brand-white/20"
+                    >
+                      {LEARN_LINKS.map((link) => (
+                        <Link
+                          key={link.label}
+                          href={link.href}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="text-base text-brand-white/80 hover:text-brand-white"
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <div className="h-px w-full bg-brand-white/20 my-2" />
+
+              {RIGHT_LINKS.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="hover:text-brand-pink transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+
+              <Link
+                href="/request-samples"
+                onClick={() => setMobileMenuOpen(false)}
+                className="bg-brand-white text-brand-green px-6 py-4 rounded-full text-center mt-8 font-semibold hover:bg-brand-beige transition-colors"
+              >
+                Request Samples
+              </Link>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

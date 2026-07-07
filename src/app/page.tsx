@@ -18,7 +18,7 @@ export default function Home() {
       <section className="pt-12 pb-24 bg-brand-white relative">
         
         {/* Full-width solid rectangle behind the copy */}
-        <div className="w-full bg-brand-beige/40 py-16 mb-16">
+        <div className="w-full bg-brand-beige/40 py-12 lg:py-16 mb-12 lg:mb-16">
           <div className="w-full mx-auto px-6 lg:px-8">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div className="max-w-2xl">
