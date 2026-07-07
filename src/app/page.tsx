@@ -7,11 +7,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export default function Home() {
-  // If we are running on Vercel (production or preview), force the Coming Soon page.
-  // Locally, it will show the real website for development!
-  if (process.env.VERCEL === '1' || process.env.NEXT_PUBLIC_SHOW_COMING_SOON === 'true') {
-    return <ComingSoon />;
-  }
+
 
   return (
     <>
