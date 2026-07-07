@@ -83,7 +83,7 @@ export function Header() {
       </div>
 
       <div className={cn(
-        "w-full mx-auto px-6 lg:px-8 w-full flex items-center justify-between transition-all duration-500 relative z-10",
+        "w-full mx-auto px-6 lg:px-8 w-full flex items-center justify-between transition-all duration-500 relative z-50",
         scrolled ? "h-14 sm:h-16" : "h-16 sm:h-20"
       )}>
         {/* Logo */}
