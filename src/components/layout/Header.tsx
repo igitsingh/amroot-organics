@@ -45,33 +45,55 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 flex flex-col border-b border-white/10",
         scrolled
-          ? "bg-white/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.03)] py-4"
-          : "bg-transparent py-6"
+          ? "bg-brand-green/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.03)]"
+          : "bg-brand-green"
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
+      {/* Shiny & Grainy Background Overlay */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Shiny Glitter Grain */}
+        <div 
+          className="absolute inset-0 mix-blend-color-dodge opacity-[0.4]"
+          style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")" }}
+        />
+        {/* Glossy Highlights */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-white/20 mix-blend-overlay opacity-80" />
+      </div>
+
+      {/* Announcement Bar */}
+      <div className={cn(
+        "w-full relative z-10 bg-brand-pink text-brand-charcoal text-[11px] sm:text-xs text-center tracking-widest font-bold uppercase shadow-sm transition-all duration-500 overflow-hidden",
+        scrolled ? "h-0 py-0 opacity-0 border-none" : "h-[32px] py-2 opacity-100"
+      )}>
+        amrootorganics.com is our only home
+      </div>
+
+      <div className={cn(
+        "w-full mx-auto px-6 lg:px-8 w-full flex items-center justify-between transition-all duration-500 relative z-10",
+        scrolled ? "h-16" : "h-20"
+      )}>
         {/* Logo */}
         <Link
           href="/"
           className="flex flex-col items-stretch justify-center gap-[0.15rem]"
         >
-          <span className="font-[family-name:var(--font-outfit)] text-[1.7rem] tracking-tight text-brand-charcoal font-semibold lowercase leading-none text-center">
+          <span className="font-[family-name:var(--font-outfit)] text-[2.2rem] tracking-tight text-brand-white font-semibold lowercase leading-none text-center">
             amroot
           </span>
-          <span className="font-sans font-medium text-brand-pink text-[9px] uppercase leading-none flex justify-between w-full">
+          <span className="font-sans font-medium text-brand-pink text-[12px] uppercase leading-none flex justify-between w-full">
             <span>O</span><span>R</span><span>G</span><span>A</span><span>N</span><span>I</span><span>C</span><span>S</span>
           </span>
         </Link>
 
         {/* Center Nav */}
-        <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-brand-charcoal/80">
+        <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-brand-white/90">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="hover:text-brand-green transition-colors duration-300"
+              className="hover:text-brand-white transition-colors duration-300"
             >
               {link.label}
             </Link>
@@ -83,7 +105,7 @@ export function Header() {
             onMouseEnter={() => setLearnOpen(true)}
             onMouseLeave={() => setLearnOpen(false)}
           >
-            <button className="flex items-center gap-1 hover:text-brand-green transition-colors duration-300 py-2">
+            <button className="flex items-center gap-1 hover:text-brand-white transition-colors duration-300 py-2">
               Learn <ChevronDown className="w-4 h-4 opacity-70" />
             </button>
 
@@ -117,7 +139,7 @@ export function Header() {
             <Link
               key={link.label}
               href={link.href}
-              className="hover:text-brand-green transition-colors duration-300"
+              className="hover:text-brand-white transition-colors duration-300"
             >
               {link.label}
             </Link>
@@ -126,15 +148,12 @@ export function Header() {
 
         {/* Right Nav */}
         <div className="hidden lg:flex items-center gap-6">
-          <button className="text-brand-charcoal hover:text-brand-green transition-colors">
+          <button className="text-brand-white/90 hover:text-brand-white transition-colors">
             <Search className="w-5 h-5" strokeWidth={1.5} />
-          </button>
-          <button className="text-brand-charcoal hover:text-brand-green transition-colors">
-            <Globe className="w-5 h-5" strokeWidth={1.5} />
           </button>
           <Link
             href="/request-samples"
-            className="bg-brand-green text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-brand-green/90 transition-all duration-300 shadow-sm hover:shadow-md"
+            className="bg-brand-white text-brand-green px-6 py-2.5 rounded-full text-sm font-medium hover:bg-brand-white/90 transition-all duration-300 shadow-sm hover:shadow-md"
           >
             Request Samples
           </Link>

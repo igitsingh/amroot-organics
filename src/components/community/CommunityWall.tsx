@@ -40,7 +40,7 @@ export function CommunityWall() {
 
   return (
     <section ref={containerRef} className="py-32 bg-brand-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="w-full mx-auto px-6 lg:px-8">
         <div className="mb-20">
           <h2 className="font-serif text-4xl md:text-5xl text-brand-charcoal mb-4">Inside the Circle</h2>
           <p className="text-brand-charcoal/60 text-lg">Hear from the pioneers raising the standard.</p>

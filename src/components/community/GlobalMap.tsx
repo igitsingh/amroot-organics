@@ -39,7 +39,7 @@ export function GlobalMap() {
 
   return (
     <section ref={containerRef} className="py-40 bg-brand-charcoal overflow-hidden relative border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="w-full mx-auto px-6 lg:px-8 relative z-10">
         <div className="text-center mb-24">
           <h2 className="font-serif text-4xl md:text-5xl text-brand-white mb-6">A Global Network</h2>
           <p className="text-white/50 text-lg max-w-2xl mx-auto">Connecting premium ingredient buyers with the absolute best of origin.</p>

@@ -2,6 +2,7 @@ import { Hero } from "@/components/home/Hero";
 import { TrustCards } from "@/components/home/TrustCards";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { ComingSoon } from "@/components/home/ComingSoon";
+import { ComparisonTable } from "@/components/home/ComparisonTable";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -22,7 +23,7 @@ export default function Home() {
         
         {/* Full-width solid rectangle behind the copy */}
         <div className="w-full bg-brand-beige/40 py-16 mb-16">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="w-full mx-auto px-6 lg:px-8">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div className="max-w-2xl">
                 <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-brand-charcoal mb-6">
@@ -45,7 +46,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="w-full mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <ProductCard 
               name="Organic Turmeric"
@@ -90,6 +91,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ComparisonTable />
     </>
   );
 }

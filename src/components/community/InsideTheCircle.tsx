@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export function InsideTheCircle() {
   return (
     <section className="py-32 bg-brand-beige/30">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="w-full mx-auto px-6 lg:px-8">
         <div className="mb-20">
           <h2 className="font-serif text-4xl md:text-5xl text-brand-charcoal mb-4">The Privileges</h2>
           <p className="text-brand-charcoal/60 text-lg">Exclusive access reserved for members.</p>

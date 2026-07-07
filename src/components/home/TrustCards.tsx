@@ -82,7 +82,7 @@ const TRUST_CARDS = [
 export function TrustCards() {
   return (
     <section className="py-24 bg-brand-white relative">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="w-full mx-auto px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="max-w-3xl mb-16">

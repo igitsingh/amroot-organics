@@ -48,7 +48,7 @@ export function TheValues() {
 
   return (
     <section ref={containerRef} className="py-32 bg-brand-charcoal text-brand-white perspective-[2000px]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-32">
+      <div className="w-full mx-auto px-6 lg:px-8 space-y-32">
         {values.map((val, idx) => (
           <div 
             key={val.id}

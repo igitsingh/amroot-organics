@@ -2,19 +2,32 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-16 overflow-hidden">
-      {/* Abstract premium background instead of standard image for now */}
-      <div className="absolute inset-0 bg-brand-white z-0">
+    <section className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/bright-orange-turmeric-powder-close-up-2025-12-17-11-33-22-utc.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Overlay to ensure text readability on the left, clear video on the right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-pink/60 via-brand-pink/20 to-transparent" />
+        
+        {/* Decorative elements over the video */}
         <div className="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-brand-beige/40 to-transparent pointer-events-none" />
         <div className="absolute -left-32 -top-32 w-96 h-96 bg-brand-pink/10 rounded-full blur-[100px] pointer-events-none" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="w-full mx-auto px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Text Content */}
         <div className="max-w-2xl">
           <motion.div
@@ -61,28 +74,23 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Visual / Image Area */}
+        {/* Visual / Location Area */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="relative aspect-[4/5] lg:aspect-square w-full max-w-lg mx-auto lg:ml-auto"
+          className="relative w-full h-full flex flex-col justify-end items-end min-h-[300px] lg:min-h-[500px]"
         >
-          {/* This will hold a museum-quality product image later */}
-          <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-2xl">
-            <div className="absolute inset-0 bg-brand-charcoal/5" />
-            <Image 
-              src="/turmeric-roots-shutterstock_2136388251.jpg" 
-              alt="Premium Raw Turmeric Root" 
-              fill 
-              className="object-cover"
-              priority
-            />
-            {/* Subtle decorative elements for premium feel */}
-            <div className="absolute top-6 left-6 w-2 h-2 rounded-full bg-brand-pink/40" />
-            <div className="absolute bottom-6 right-6 flex gap-1">
-              <div className="w-1.5 h-1.5 rounded-full bg-brand-green/40" />
-              <div className="w-1.5 h-1.5 rounded-full bg-brand-green/20" />
+          {/* Location Tag */}
+          <div className="bg-white/90 backdrop-blur-sm px-5 py-4 rounded-2xl shadow-xl flex items-start gap-3 border border-white/20 max-w-sm mb-4 lg:mb-12">
+            <MapPin className="w-5 h-5 text-brand-green shrink-0 mt-0.5" />
+            <div className="flex flex-col gap-1">
+              <span className="text-[11px] font-bold text-brand-charcoal uppercase tracking-widest">
+                LAKADONG TURMERIC
+              </span>
+              <span className="text-[9px] font-medium text-brand-charcoal/70 uppercase leading-relaxed">
+                LAKADONG, West Jaintia Hills (formerly Jaintia Hills), Laskein, Meghalaya, India - 793150
+              </span>
             </div>
           </div>
         </motion.div>

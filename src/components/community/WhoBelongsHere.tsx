@@ -26,7 +26,7 @@ export function WhoBelongsHere() {
 
   return (
     <section ref={containerRef} className="py-32 bg-brand-beige/20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-20 text-center">
+      <div className="w-full mx-auto px-6 lg:px-8 mb-20 text-center">
         <h2 className="font-serif text-4xl md:text-5xl text-brand-charcoal mb-4">Who Belongs Here</h2>
         <p className="text-brand-charcoal/60 text-lg">A network of uncompromising professionals.</p>
       </div>
