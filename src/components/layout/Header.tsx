@@ -48,10 +48,15 @@ export function Header() {
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
     }
-    return () => { document.body.style.overflow = "unset"; };
+    return () => { 
+      document.body.style.overflow = "unset"; 
+      document.documentElement.style.overflow = "unset";
+    };
   }, [mobileMenuOpen]);
 
   return (
@@ -198,6 +203,7 @@ export function Header() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 bg-brand-green flex flex-col pt-24 px-6 pb-6 overflow-y-auto"
+            data-lenis-prevent="true"
           >
             <nav className="flex flex-col gap-6 text-xl font-medium text-brand-white mt-8">
               {NAV_LINKS.map((link) => (
