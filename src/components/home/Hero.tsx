@@ -6,7 +6,7 @@ import { ArrowRight, MapPin } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center pt-36 lg:pt-32 pb-16 overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video 
@@ -36,9 +36,9 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl leading-[1.1] text-brand-charcoal tracking-tight mb-8">
-              Single-Origin Ingredients. <br className="hidden sm:block" />
-              <span className="text-brand-green italic font-light">Trusted Worldwide.</span>
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl leading-tight lg:leading-[1.1] text-brand-charcoal tracking-tight mb-6 lg:mb-8">
+              Single-Origin <br className="block sm:hidden" /> Ingredients. <br className="hidden sm:block" />
+              <span className="text-brand-green italic font-light block mt-2 sm:inline sm:mt-0">Trusted Worldwide.</span>
             </h1>
           </motion.div>
 
