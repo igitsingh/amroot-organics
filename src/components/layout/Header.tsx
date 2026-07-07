@@ -89,7 +89,7 @@ export function Header() {
         {/* Logo */}
         <Link
           href="/"
-          className="flex flex-col items-stretch justify-center gap-[0.15rem]"
+          className="flex flex-col items-stretch justify-center gap-[0.15rem] relative z-50"
         >
           <span className="font-[family-name:var(--font-outfit)] text-3xl sm:text-[2.2rem] tracking-tight text-brand-white font-semibold lowercase leading-none text-center">
             amroot
