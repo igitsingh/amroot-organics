@@ -126,20 +126,20 @@ export function TrustCards() {
         {/* Row 1 */}
         <motion.div style={{ x: x1 }} className="flex gap-6 w-max px-6">
           {row1.map((card, idx) => (
-            <Card key={idx} card={card} />
+            <Card key={idx} card={card} index={idx} />
           ))}
           {row1.map((card, idx) => (
-            <Card key={`dup1-${idx}`} card={card} />
+            <Card key={`dup1-${idx}`} card={card} index={idx} />
           ))}
         </motion.div>
         
         {/* Row 2 */}
         <motion.div style={{ x: x2 }} className="flex gap-6 w-max px-6 ml-[-20vw]">
           {row2.map((card, idx) => (
-            <Card key={idx} card={card} />
+            <Card key={idx} card={card} index={idx + 6} />
           ))}
           {row2.map((card, idx) => (
-            <Card key={`dup2-${idx}`} card={card} />
+            <Card key={`dup2-${idx}`} card={card} index={idx + 6} />
           ))}
         </motion.div>
       </div>
@@ -147,25 +147,60 @@ export function TrustCards() {
   );
 }
 
-function Card({ card }: { card: typeof TRUST_CARDS[0] }) {
+function Card({ card, index }: { card: typeof TRUST_CARDS[0], index: number }) {
+  const variants = [
+    {
+      bg: "bg-brand-green",
+      text: "text-brand-white",
+      desc: "text-brand-white/80",
+      icon: "text-brand-white/60",
+      hoverIcon: "group-hover:text-brand-pink",
+      hoverText: "group-hover:text-brand-white",
+      hoverBorder: "group-hover:border-brand-pink/30",
+      hoverShadow: "group-hover:shadow-[0_0_30px_rgba(240,138,93,0.15)]"
+    },
+    {
+      bg: "bg-brand-pink",
+      text: "text-brand-charcoal",
+      desc: "text-brand-charcoal/80",
+      icon: "text-brand-charcoal/50",
+      hoverIcon: "group-hover:text-brand-green",
+      hoverText: "group-hover:text-brand-charcoal",
+      hoverBorder: "group-hover:border-brand-green/30",
+      hoverShadow: "group-hover:shadow-[0_0_30px_rgba(3,79,70,0.15)]"
+    },
+    {
+      bg: "bg-brand-beige",
+      text: "text-brand-charcoal",
+      desc: "text-brand-charcoal/70",
+      icon: "text-brand-green/50",
+      hoverIcon: "group-hover:text-brand-pink",
+      hoverText: "group-hover:text-brand-green",
+      hoverBorder: "group-hover:border-brand-pink/30",
+      hoverShadow: "group-hover:shadow-[0_0_30px_rgba(240,138,93,0.15)]"
+    }
+  ];
+
+  const theme = variants[index % 3];
+
   return (
     <motion.div 
       whileHover={{ y: -8, scale: 1.02 }}
-      className="group relative bg-white px-8 py-10 rounded-3xl min-w-[320px] md:min-w-[400px] flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] cursor-pointer"
+      className={`group relative px-8 py-10 rounded-3xl min-w-[320px] md:min-w-[400px] flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] cursor-pointer ${theme.bg}`}
     >
-      <div className="absolute inset-0 rounded-3xl border border-transparent group-hover:border-brand-pink/30 group-hover:shadow-[0_0_30px_rgba(240,138,93,0.15)] transition-all duration-500" />
+      <div className={`absolute inset-0 rounded-3xl border border-transparent transition-all duration-500 ${theme.hoverBorder} ${theme.hoverShadow}`} />
       
       <div className="relative z-10 flex flex-col h-full">
         {/* Icon Wrapper */}
-        <div className="mb-8 text-brand-green/50 group-hover:text-brand-pink group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500 origin-left">
+        <div className={`mb-8 ${theme.icon} ${theme.hoverIcon} group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500 origin-left`}>
           <card.icon className="w-10 h-10" strokeWidth={1.5} />
         </div>
         
         {/* Text Content */}
-        <h3 className="font-serif text-2xl text-brand-charcoal mb-3 group-hover:text-brand-green transition-colors duration-500">
+        <h3 className={`font-serif text-2xl mb-3 ${theme.text} ${theme.hoverText} transition-colors duration-500`}>
           {card.title}
         </h3>
-        <p className="text-base text-brand-charcoal/60 leading-relaxed font-light mt-auto">
+        <p className={`text-base leading-relaxed font-light mt-auto ${theme.desc}`}>
           {card.description}
         </p>
       </div>
