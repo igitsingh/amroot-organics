@@ -45,11 +45,11 @@ export function ComparisonTable() {
               
               <div className="p-5 flex flex-col gap-4">
                 {/* Amroot */}
-                <div className="flex items-start gap-3 p-3 bg-brand-pink/10 rounded-xl border border-brand-pink/20">
-                  <CheckCircle2 className="w-5 h-5 text-brand-pink shrink-0 mt-0.5" />
+                <div className="flex items-start gap-3 p-3 bg-brand-green rounded-xl border border-brand-green">
+                  <CheckCircle2 className="w-5 h-5 text-white shrink-0 mt-0.5" />
                   <div className="flex flex-col">
-                    <span className="font-bold text-brand-charcoal text-[13px] uppercase tracking-wider mb-1">Amroot Organics</span>
-                    <span className="text-sm text-brand-charcoal/80 leading-snug">{item.amroot}</span>
+                    <span className="font-bold text-white text-[13px] uppercase tracking-wider mb-1">Amroot Organics</span>
+                    <span className="text-sm text-white/90 leading-snug">{item.amroot}</span>
                   </div>
                 </div>
 
@@ -83,11 +83,11 @@ export function ComparisonTable() {
               <div className="p-6 flex items-center justify-center font-medium text-brand-charcoal">
                 
               </div>
-              <div className="p-6 flex flex-col items-center justify-center text-center bg-brand-pink/10 border-x border-brand-pink/20">
-                <span className="font-outfit text-xl tracking-tight text-brand-charcoal font-semibold lowercase mb-1">
+              <div className="p-6 flex flex-col items-center justify-center text-center bg-brand-green border-x border-brand-green">
+                <span className="font-outfit text-xl tracking-tight text-white font-semibold lowercase mb-1">
                   amroot
                 </span>
-                <span className="font-sans font-medium text-brand-pink text-[10px] uppercase tracking-[0.2em]">
+                <span className="font-sans font-medium text-brand-beige text-[10px] uppercase tracking-[0.2em]">
                   Organics
                 </span>
               </div>
@@ -104,9 +104,9 @@ export function ComparisonTable() {
                 <div className="p-6 flex items-center font-medium text-brand-charcoal">
                   {item.title}
                 </div>
-                <div className="p-6 flex flex-col items-center justify-center text-center bg-brand-pink/5 border-x border-brand-pink/20 gap-2">
-                  <CheckCircle2 className="w-6 h-6 text-brand-pink" />
-                  <span className="text-xs text-brand-charcoal/80">{item.amroot}</span>
+                <div className="p-6 flex flex-col items-center justify-center text-center bg-brand-green border-x border-brand-green gap-2">
+                  <CheckCircle2 className="w-6 h-6 text-white" />
+                  <span className="text-xs text-white/90">{item.amroot}</span>
                 </div>
                 <div className="p-6 flex flex-col items-center justify-center text-center gap-2">
                   <XCircle className="w-5 h-5 text-brand-charcoal/40" />

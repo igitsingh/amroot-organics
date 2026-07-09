@@ -94,8 +94,8 @@ export function TrustCards() {
   const row2 = TRUST_CARDS.slice(6, 12);
 
   return (
-    <section ref={containerRef} className="py-24 bg-brand-white overflow-hidden relative">
-      <div className="w-full mx-auto px-6 lg:px-8 mb-16">
+    <section ref={containerRef} className="py-12 bg-brand-white overflow-hidden relative">
+      <div className="w-full mx-auto px-6 lg:px-8 mb-8">
         
         {/* Section Header */}
         <div className="max-w-3xl">
@@ -186,13 +186,13 @@ function Card({ card, index }: { card: typeof TRUST_CARDS[0], index: number }) {
   return (
     <motion.div 
       whileHover={{ y: -8, scale: 1.02 }}
-      className={`group relative px-8 py-10 rounded-3xl min-w-[320px] md:min-w-[400px] flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] cursor-pointer ${theme.bg}`}
+      className={`group relative px-6 py-6 rounded-3xl min-w-[320px] md:min-w-[400px] flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] cursor-pointer ${theme.bg}`}
     >
       <div className={`absolute inset-0 rounded-3xl border border-transparent transition-all duration-500 ${theme.hoverBorder} ${theme.hoverShadow}`} />
       
       <div className="relative z-10 flex flex-col h-full">
         {/* Icon Wrapper */}
-        <div className={`mb-8 ${theme.icon} ${theme.hoverIcon} group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500 origin-left`}>
+        <div className={`mb-4 ${theme.icon} ${theme.hoverIcon} group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500 origin-left`}>
           <card.icon className="w-10 h-10" strokeWidth={1.5} />
         </div>
         

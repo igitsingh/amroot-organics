@@ -3,6 +3,7 @@ import { TrustCards } from "@/components/home/TrustCards";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { ComingSoon } from "@/components/home/ComingSoon";
 import { ComparisonTable } from "@/components/home/ComparisonTable";
+import { Traceability } from "@/components/home/Traceability";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -12,30 +13,33 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <Traceability />
       <TrustCards />
       
       {/* Featured Products Section */}
       <section className="pt-12 pb-24 bg-brand-white relative">
         
         {/* Full-width solid rectangle behind the copy */}
-        <div className="w-full bg-brand-beige/40 py-12 lg:py-16 mb-12 lg:mb-16">
+        <div className="w-full bg-[#F4D03F] py-12 lg:py-16 mb-12 lg:mb-16">
           <div className="w-full mx-auto px-6 lg:px-8">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div className="max-w-2xl">
-                <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-brand-charcoal mb-6">
-                  Our Signature <br/>
-                  <span className="text-brand-green italic">Ingredients</span>
+                <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-brand-charcoal mb-8 leading-tight tracking-wide">
+                  <span className="block mb-1">RARE HARVEST.</span>
+                  <span className="block mb-1">RARE NATURE.</span>
+                  <span className="block mb-1">RARE ORIGIN.</span>
+                  <span className="block text-brand-green italic lowercase font-light tracking-normal mt-3">rare turmeric.</span>
                 </h2>
-                <p className="text-brand-charcoal/70 text-lg font-light leading-relaxed">
-                  Sourced from select regions across India, standardized for active compounds, 
-                  and processed under rigorous quality controls.
+                <div className="w-12 h-px bg-brand-green/40 mb-6"></div>
+                <p className="text-brand-charcoal/80 text-lg sm:text-xl font-light leading-relaxed max-w-xl">
+                  An exclusive collection of just two pristine ingredients—Turmeric and Ginger—spanning four meticulously crafted SKUs. Reserved for discerning global importers and distributors who demand the absolute finest.
                 </p>
               </div>
               <Link
                 href="/products"
                 className="group flex items-center gap-2 text-brand-charcoal font-medium hover:text-brand-green transition-colors"
               >
-                View Full Catalog
+                PLACE YOUR RARE ORDER
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
