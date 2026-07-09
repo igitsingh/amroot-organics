@@ -36,7 +36,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl leading-tight lg:leading-[1.1] text-brand-charcoal tracking-tight mb-6 lg:mb-8">
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl leading-tight lg:leading-[1.1] text-white tracking-tight mb-6 lg:mb-8">
               Single-Origin <br className="block sm:hidden" /> Ingredients. <br className="hidden sm:block" />
               <span className="text-brand-green italic font-light block mt-2 sm:inline sm:mt-0">Trusted Worldwide.</span>
             </h1>

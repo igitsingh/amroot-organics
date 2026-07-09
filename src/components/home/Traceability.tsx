@@ -6,8 +6,8 @@ export function Traceability() {
       <div className="flex flex-col md:flex-row min-h-[500px] 2xl:min-h-[600px]">
         {/* Left Content */}
         <div className="w-full md:w-1/2 flex flex-col justify-center px-8 py-16 md:px-16 lg:px-24 xl:px-32">
-          <p className="text-sm font-medium text-brand-charcoal/70 mb-4">
-            Introducing Amroot Organics Traceability
+          <p className="text-sm font-medium text-brand-charcoal/70 mb-4 uppercase tracking-wider">
+            FULL FARM TO TABLE TRACEABILITY
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-brand-charcoal mb-6 font-medium">
             Trace your Products
@@ -19,7 +19,7 @@ export function Traceability() {
             href="/trace"
             className="inline-flex items-center justify-center gap-2 bg-[#1C1C1C] text-white px-8 py-4 rounded-full font-medium hover:bg-black transition-all hover:scale-105 active:scale-95 w-fit"
           >
-            <span>👉</span> Trace Now
+            Trace Now
           </Link>
         </div>
 
