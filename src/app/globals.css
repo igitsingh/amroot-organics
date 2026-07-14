@@ -10,8 +10,8 @@
   --color-background: var(--color-brand-white);
   --color-foreground: var(--color-brand-charcoal);
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-outfit), ui-serif, Georgia, serif;
   --font-outfit: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 }
 

@@ -37,7 +37,7 @@ export function ProductCard({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      className="group flex flex-col bg-white border border-brand-beige/50 rounded-3xl overflow-hidden hover:shadow-[0_20px_60px_rgba(45,49,66,0.06)] transition-all duration-700"
+      className="group flex flex-col bg-gradient-to-b from-white to-[#FAFAF8] border border-brand-beige/50 rounded-[2rem] overflow-hidden hover:shadow-[0_20px_60px_rgba(45,49,66,0.08)] hover:-translate-y-1 transition-all duration-500"
     >
       {/* Image Area - minimal and large */}
       <div className="relative aspect-[4/3] w-full bg-brand-beige/10 overflow-hidden flex items-center justify-center">
@@ -57,89 +57,72 @@ export function ProductCard({
         )}
         
         {/* Category Tag */}
-        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full border border-brand-beige/50 text-xs font-medium text-brand-charcoal">
+        <div className="absolute top-5 left-5 bg-brand-charcoal text-[#F4D03F] px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase shadow-md">
           {category}
         </div>
       </div>
 
       {/* Content Area */}
-      <div className="p-8 flex flex-col flex-grow">
-        <h3 className="font-serif text-2xl text-brand-charcoal mb-6 group-hover:text-brand-green transition-colors duration-300">
+      <div className="p-8 flex flex-col flex-grow relative">
+        <h3 className="font-[family-name:var(--font-outfit)] text-3xl font-semibold tracking-tight text-brand-charcoal mb-6 group-hover:text-brand-green transition-colors duration-300">
           {name}
         </h3>
 
-        {/* Tech Specs */}
-        <div className="space-y-4 mb-8 flex-grow">
-          {/* Specifications */}
-          <div>
-            <div className="flex items-center gap-2 text-xs font-medium text-brand-charcoal/50 uppercase tracking-wider mb-2">
-              <Beaker className="w-3.5 h-3.5" />
-              Specifications
+        {/* Tech Specs - Grid Style */}
+        <div className="grid grid-cols-2 gap-3 mb-6 flex-grow">
+          {specifications.curcumin && (
+            <div className="bg-white/60 p-3 rounded-2xl shadow-sm border border-brand-beige/40 flex flex-col justify-center">
+              <span className="text-[10px] uppercase tracking-widest text-brand-charcoal/50 mb-1 font-semibold">Curcumin</span>
+              <span className="font-medium text-brand-charcoal text-sm">{specifications.curcumin}</span>
             </div>
-            <ul className="text-sm text-brand-charcoal/80 space-y-1">
-              {specifications.curcumin && (
-                <li className="flex justify-between">
-                  <span className="text-brand-charcoal/60">Curcumin</span>
-                  <span className="font-medium">{specifications.curcumin}</span>
-                </li>
-              )}
-              {specifications.moisture && (
-                <li className="flex justify-between">
-                  <span className="text-brand-charcoal/60">Moisture</span>
-                  <span className="font-medium">{specifications.moisture}</span>
-                </li>
-              )}
-              {specifications.form && (
-                <li className="flex justify-between">
-                  <span className="text-brand-charcoal/60">Form</span>
-                  <span className="font-medium">{specifications.form}</span>
-                </li>
-              )}
-            </ul>
-          </div>
-
-          <div className="h-px w-full bg-brand-beige/50" />
-
-          {/* Applications */}
-          <div>
-            <div className="flex items-center gap-2 text-xs font-medium text-brand-charcoal/50 uppercase tracking-wider mb-2">
-              <Tag className="w-3.5 h-3.5" />
-              Applications
+          )}
+          {specifications.moisture && (
+            <div className="bg-white/60 p-3 rounded-2xl shadow-sm border border-brand-beige/40 flex flex-col justify-center">
+              <span className="text-[10px] uppercase tracking-widest text-brand-charcoal/50 mb-1 font-semibold">Moisture</span>
+              <span className="font-medium text-brand-charcoal text-sm">{specifications.moisture}</span>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {applications.map((app) => (
-                <span key={app} className="text-xs bg-brand-beige/30 text-brand-charcoal/80 px-2 py-1 rounded-md">
-                  {app}
-                </span>
-              ))}
+          )}
+          {specifications.form && (
+            <div className="bg-white/60 p-3 rounded-2xl shadow-sm border border-brand-beige/40 col-span-2 flex flex-col justify-center">
+              <span className="text-[10px] uppercase tracking-widest text-brand-charcoal/50 mb-1 font-semibold">Form</span>
+              <span className="font-medium text-brand-charcoal text-sm">{specifications.form}</span>
             </div>
-          </div>
+          )}
+        </div>
 
-          <div className="h-px w-full bg-brand-beige/50" />
-
-          {/* Packaging */}
-          <div>
-            <div className="flex items-center gap-2 text-xs font-medium text-brand-charcoal/50 uppercase tracking-wider mb-1">
-              <Box className="w-3.5 h-3.5" />
-              Packaging
-            </div>
-            <p className="text-sm text-brand-charcoal/80">{packaging}</p>
+        {/* Applications */}
+        <div className="mb-6">
+          <div className="text-[10px] uppercase tracking-widest text-brand-charcoal/50 mb-3 font-semibold">Ideal For</div>
+          <div className="flex flex-wrap gap-2">
+            {applications.map((app) => (
+              <span key={app} className="text-[11px] font-medium bg-brand-green/10 text-brand-green px-3 py-1.5 rounded-full">
+                {app}
+              </span>
+            ))}
           </div>
         </div>
 
+        {/* Packaging */}
+        <div className="mb-8 mt-auto">
+          <div className="text-[10px] uppercase tracking-widest text-brand-charcoal/50 mb-2 font-semibold">Packaging</div>
+          <p className="text-sm font-medium text-brand-charcoal/80 flex items-center gap-2 bg-white/40 p-3 rounded-xl border border-brand-beige/20">
+             <Box className="w-4 h-4 text-brand-green" /> {packaging}
+          </p>
+        </div>
+
         {/* Actions */}
-        <div className="flex items-center gap-4 mt-auto pt-4 border-t border-brand-beige/50">
+        <div className="flex items-center gap-3 mt-auto">
           <Link
             href={`/products/${id}`}
-            className="flex-grow flex items-center justify-center gap-2 bg-brand-white border border-brand-beige text-brand-charcoal px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-brand-charcoal hover:text-white transition-all duration-300"
+            className="flex-grow flex items-center justify-center gap-2 bg-brand-charcoal text-white px-4 py-3 rounded-xl text-sm font-medium hover:bg-brand-green transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-brand-green/20"
           >
-            View Details
+            View Specifications
           </Link>
           <button
-            className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-xl border border-brand-beige text-brand-charcoal hover:text-brand-green hover:border-brand-green/30 transition-all duration-300"
-            title="Download Specifications (COA)"
+            className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-white border border-brand-beige/60 text-brand-charcoal hover:text-brand-green hover:border-brand-green/30 hover:shadow-md transition-all duration-300"
+            title="Download COA"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-5 h-5" />
           </button>
         </div>
       </div>

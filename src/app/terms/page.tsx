@@ -83,7 +83,7 @@ export default function TermsOfServicePage() {
             For any legal or commercial inquiries regarding these Terms, please contact us at:
           </p>
           <ul className="list-none pl-0 mt-4 border-l-2 border-brand-charcoal/20 pl-6 py-2">
-            <li><strong>Email:</strong> legal@amrootorganics.com</li>
+            <li><strong>Email:</strong> legal@ourbrand.com</li>
             <li><strong>Address:</strong> Global Headquarters, Mumbai, India</li>
           </ul>
         </div>

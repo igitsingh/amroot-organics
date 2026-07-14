@@ -94,17 +94,17 @@ export function TrustCards() {
   const row2 = TRUST_CARDS.slice(6, 12);
 
   return (
-    <section ref={containerRef} className="py-12 bg-brand-white overflow-hidden relative">
-      <div className="w-full mx-auto px-6 lg:px-8 mb-8">
-        
-        {/* Section Header */}
-        <div className="max-w-3xl">
+    <section ref={containerRef} className="py-16 lg:py-24 bg-[#F4D03F] overflow-hidden relative flex flex-col lg:flex-row items-center gap-12 lg:gap-0">
+      
+      {/* Text Content - Left Side */}
+      <div className="w-full lg:w-[40%] xl:w-[35%] shrink-0 px-6 lg:pl-12 xl:pl-24 z-10 relative">
+        <div className="max-w-xl">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="font-serif text-3xl sm:text-4xl lg:text-5xl text-brand-charcoal mb-6"
+            className="font-[family-name:var(--font-outfit)] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-6xl text-brand-charcoal mb-6 leading-[1.1]"
           >
             Built for Global <br/>
             <span className="text-brand-green italic">Procurement</span>
@@ -122,9 +122,10 @@ export function TrustCards() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-6">
+      {/* Cards Content - Right Side */}
+      <div className="w-full lg:w-[60%] xl:w-[65%] flex flex-col gap-5 relative z-0 [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
         {/* Row 1 */}
-        <motion.div style={{ x: x1 }} className="flex gap-6 w-max px-6">
+        <motion.div style={{ x: x1 }} className="flex gap-6 w-max px-6 lg:px-0">
           {row1.map((card, idx) => (
             <Card key={idx} card={card} index={idx} />
           ))}
@@ -134,7 +135,7 @@ export function TrustCards() {
         </motion.div>
         
         {/* Row 2 */}
-        <motion.div style={{ x: x2 }} className="flex gap-6 w-max px-6 ml-[-20vw]">
+        <motion.div style={{ x: x2 }} className="flex gap-6 w-max px-6 lg:px-0 ml-[-20vw] lg:ml-[-10vw]">
           {row2.map((card, idx) => (
             <Card key={idx} card={card} index={idx + 6} />
           ))}
@@ -186,7 +187,7 @@ function Card({ card, index }: { card: typeof TRUST_CARDS[0], index: number }) {
   return (
     <motion.div 
       whileHover={{ y: -8, scale: 1.02 }}
-      className={`group relative px-6 py-6 rounded-3xl min-w-[320px] md:min-w-[400px] flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] cursor-pointer ${theme.bg}`}
+      className={`group relative px-5 py-5 rounded-3xl min-w-[260px] md:min-w-[320px] flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] cursor-pointer ${theme.bg}`}
     >
       <div className={`absolute inset-0 rounded-3xl border border-transparent transition-all duration-500 ${theme.hoverBorder} ${theme.hoverShadow}`} />
       
@@ -197,10 +198,10 @@ function Card({ card, index }: { card: typeof TRUST_CARDS[0], index: number }) {
         </div>
         
         {/* Text Content */}
-        <h3 className={`font-serif text-2xl mb-3 ${theme.text} ${theme.hoverText} transition-colors duration-500`}>
+        <h3 className={`font-serif text-xl md:text-2xl mb-2 ${theme.text} ${theme.hoverText} transition-colors duration-500`}>
           {card.title}
         </h3>
-        <p className={`text-base leading-relaxed font-light mt-auto ${theme.desc}`}>
+        <p className={`text-sm md:text-base leading-relaxed font-light mt-auto ${theme.desc}`}>
           {card.description}
         </p>
       </div>

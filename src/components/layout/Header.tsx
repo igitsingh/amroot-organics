@@ -84,7 +84,7 @@ export function Header() {
         "w-full relative z-10 bg-brand-pink text-brand-charcoal text-[10px] sm:text-xs text-center tracking-widest font-bold uppercase shadow-sm transition-all duration-500 overflow-hidden flex items-center justify-center",
         scrolled ? "h-0 py-0 opacity-0 border-none" : "h-[24px] sm:h-[32px] py-1 sm:py-2 opacity-100"
       )}>
-        amrootorganics.com is our only home
+        ourbrand.com is our only home
       </div>
 
       <div className={cn(

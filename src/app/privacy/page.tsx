@@ -96,7 +96,7 @@ export default function PrivacyPolicyPage() {
             If you have any questions about this Privacy Policy, or if you wish to exercise your legal rights, please contact our Data Protection Officer / Grievance Officer at:
           </p>
           <ul className="list-none pl-0 mt-4 border-l-2 border-brand-green pl-6 py-2">
-            <li><strong>Email:</strong> legal@amrootorganics.com</li>
+            <li><strong>Email:</strong> legal@ourbrand.com</li>
             <li><strong>Address:</strong> Global Headquarters, Mumbai, India</li>
           </ul>
         </div>
