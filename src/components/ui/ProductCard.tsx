@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export interface ProductCardProps {
+  id: string;
   name: string;
   category: string;
   imagePlaceholder: string; // Used for the abstract color placeholder
@@ -21,6 +22,7 @@ export interface ProductCardProps {
 }
 
 export function ProductCard({
+  id,
   name,
   category,
   imagePlaceholder,
@@ -128,7 +130,7 @@ export function ProductCard({
         {/* Actions */}
         <div className="flex items-center gap-4 mt-auto pt-4 border-t border-brand-beige/50">
           <Link
-            href={`/products/${name.toLowerCase().replace(/ /g, "-")}`}
+            href={`/products/${id}`}
             className="flex-grow flex items-center justify-center gap-2 bg-brand-white border border-brand-beige text-brand-charcoal px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-brand-charcoal hover:text-white transition-all duration-300"
           >
             View Details

@@ -49,6 +49,7 @@ export default function Home() {
         <div className="w-full mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <ProductCard 
+              id="organic-turmeric"
               name="Organic Turmeric"
               category="Certified Organic"
               imagePlaceholder="Deep Orange Turmeric Root"
@@ -59,6 +60,7 @@ export default function Home() {
               packaging="25kg Paper Bags / Bulk Totes"
             />
             <ProductCard 
+              id="lakadong-turmeric"
               name="Premium Lakadong Turmeric"
               category="High Curcumin Variety"
               imagePlaceholder="Vibrant Yellow Fine Powder"
@@ -69,6 +71,7 @@ export default function Home() {
               packaging="25kg / 50kg Bags with inner liner"
             />
             <ProductCard 
+              id="organic-ginger"
               name="Organic Ginger"
               category="Certified Organic"
               imagePlaceholder="Pale Yellow Ginger Root"
@@ -79,6 +82,7 @@ export default function Home() {
               packaging="20kg Cartons / 25kg Bags"
             />
             <ProductCard 
+              id="premium-ginger"
               name="Premium Ginger"
               category="Conventional High-Grade"
               imagePlaceholder="Rich Aromatic Ginger Powder"
