@@ -62,14 +62,14 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 flex flex-col border-b border-white/10",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 flex flex-col",
         scrolled
-          ? "bg-brand-green/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.03)]"
-          : "bg-brand-green"
+          ? "bg-brand-green/95 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.03)] border-b border-white/10"
+          : "bg-transparent border-b-transparent"
       )}
     >
       {/* Shiny & Grainy Background Overlay */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className={cn("absolute inset-0 pointer-events-none overflow-hidden transition-opacity duration-500", scrolled ? "opacity-100" : "opacity-0")}>
         {/* Shiny Glitter Grain */}
         <div 
           className="absolute inset-0 mix-blend-color-dodge opacity-[0.4]"
@@ -96,7 +96,10 @@ export function Header() {
           href="/"
           className="flex flex-col items-stretch justify-center gap-[0.15rem] relative z-50"
         >
-          <span className="font-[family-name:var(--font-outfit)] text-3xl sm:text-[2.2rem] tracking-tight text-brand-white font-semibold lowercase leading-none text-center">
+          <span className={cn(
+            "font-[family-name:var(--font-outfit)] text-3xl sm:text-[2.2rem] tracking-tight font-semibold lowercase leading-none text-center transition-colors duration-300",
+            scrolled ? "text-brand-white" : "text-black"
+          )}>
             amroot
           </span>
           <span className="font-sans font-medium text-brand-pink text-[10px] sm:text-[12px] uppercase leading-none flex justify-between w-full">
@@ -105,12 +108,18 @@ export function Header() {
         </Link>
 
         {/* Center Nav */}
-        <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-brand-white/90">
+        <nav className={cn(
+          "hidden lg:flex items-center gap-8 text-sm font-medium transition-colors duration-300",
+          scrolled ? "text-brand-white/90" : "text-black/80"
+        )}>
           {NAV_LINKS.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="hover:text-brand-white transition-colors duration-300"
+              className={cn(
+                "transition-colors duration-300",
+                scrolled ? "hover:text-brand-white" : "hover:text-black"
+              )}
             >
               {link.label}
             </Link>
@@ -122,7 +131,10 @@ export function Header() {
             onMouseEnter={() => setLearnOpen(true)}
             onMouseLeave={() => setLearnOpen(false)}
           >
-            <button className="flex items-center gap-1 hover:text-brand-white transition-colors duration-300 py-2">
+            <button className={cn(
+              "flex items-center gap-1 transition-colors duration-300 py-2",
+              scrolled ? "hover:text-brand-white" : "hover:text-black"
+            )}>
               Learn <ChevronDown className="w-4 h-4 opacity-70" />
             </button>
 
@@ -156,7 +168,10 @@ export function Header() {
             <Link
               key={link.label}
               href={link.href}
-              className="hover:text-brand-white transition-colors duration-300"
+              className={cn(
+                "transition-colors duration-300",
+                scrolled ? "hover:text-brand-white" : "hover:text-black"
+              )}
             >
               {link.label}
             </Link>
@@ -165,12 +180,18 @@ export function Header() {
 
         {/* Right Nav */}
         <div className="hidden lg:flex items-center gap-6">
-          <button className="text-brand-white/90 hover:text-brand-white transition-colors">
+          <button className={cn(
+            "transition-colors",
+            scrolled ? "text-brand-white/90 hover:text-brand-white" : "text-black/80 hover:text-black"
+          )}>
             <Search className="w-5 h-5" strokeWidth={1.5} />
           </button>
           <Link
             href="/request-samples"
-            className="bg-brand-white text-brand-green px-6 py-2.5 rounded-full text-sm font-medium hover:bg-brand-white/90 transition-all duration-300 shadow-sm hover:shadow-md"
+            className={cn(
+              "px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-sm hover:shadow-md",
+              scrolled ? "bg-brand-white text-brand-green hover:bg-brand-white/90" : "bg-black text-white hover:bg-black/80"
+            )}
           >
             Request Samples
           </Link>
@@ -178,12 +199,18 @@ export function Header() {
 
         {/* Mobile Hamburger Button */}
         <div className="flex lg:hidden items-center gap-4">
-          <button className="text-brand-white/90 hover:text-brand-white transition-colors">
+          <button className={cn(
+            "transition-colors",
+            scrolled ? "text-brand-white/90 hover:text-brand-white" : "text-black/80 hover:text-black"
+          )}>
             <Search className="w-5 h-5" strokeWidth={1.5} />
           </button>
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-brand-white p-2 -mr-2 relative z-50"
+            className={cn(
+              "p-2 -mr-2 relative z-50 transition-colors",
+              scrolled || mobileMenuOpen ? "text-brand-white" : "text-black"
+            )}
           >
             {mobileMenuOpen ? (
               <X className="w-6 h-6" strokeWidth={1.5} />

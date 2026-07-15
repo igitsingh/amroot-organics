@@ -12,6 +12,7 @@ export function ProductsCatalog({ initialActiveProduct }: { initialActiveProduct
   const [activeProduct, setActiveProduct] = useState<string>(
     initialActiveProduct || b2bProducts[0].id
   );
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   return (
     <div className="bg-[#FAF8F5] py-24">
@@ -35,7 +36,10 @@ export function ProductsCatalog({ initialActiveProduct }: { initialActiveProduct
             {b2bProducts.map((product) => (
               <button
                 key={product.id}
-                onClick={() => setActiveProduct(product.id)}
+                onClick={() => {
+                  setActiveProduct(product.id);
+                  setActiveImageIndex(0);
+                }}
                 className={`text-left px-6 py-5 rounded-2xl transition-all flex items-center justify-between border ${
                   activeProduct === product.id
                     ? "bg-white border-brand-green/30 shadow-md"
@@ -80,17 +84,41 @@ export function ProductsCatalog({ initialActiveProduct }: { initialActiveProduct
                     className="flex flex-col gap-8"
                   >
                     {/* Hero Image for Product */}
-                    <div className="relative w-full aspect-square sm:aspect-[4/3] rounded-[2.5rem] overflow-hidden bg-gradient-to-b from-white to-[#F4EFE6]/50 shadow-sm border border-white/60 flex items-center justify-center p-8 sm:p-12">
-                      <div className="relative w-full h-full">
-                        <Image
-                          src={product.image}
-                          alt={product.name}
-                          fill
-                          className="object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700 ease-out"
-                          sizes="(max-width: 1024px) 100vw, 66vw"
-                          priority
-                        />
+                    <div className="flex flex-col gap-4">
+                      {/* Main Image */}
+                      <div className="relative w-full aspect-square sm:aspect-[4/3] rounded-[2.5rem] overflow-hidden bg-gradient-to-b from-white to-[#F4EFE6]/50 shadow-sm border border-white/60 flex items-center justify-center p-8 sm:p-12">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={product.images ? product.images[activeImageIndex] : product.image}
+                            alt={product.name}
+                            fill
+                            className="object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700 ease-out"
+                            sizes="(max-width: 1024px) 100vw, 66vw"
+                            priority
+                          />
+                        </div>
                       </div>
+                      
+                      {/* Thumbnails */}
+                      {product.images && product.images.length > 1 && (
+                        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 no-scrollbar">
+                          {product.images.map((img, idx) => (
+                            <button 
+                              key={idx} 
+                              onClick={() => setActiveImageIndex(idx)}
+                              className={`snap-start shrink-0 relative w-24 h-24 sm:w-32 sm:h-32 rounded-2xl overflow-hidden bg-white shadow-sm border flex items-center justify-center p-3 transition-all ${activeImageIndex === idx ? 'border-brand-green ring-2 ring-brand-green/20' : 'border-brand-charcoal/10 hover:border-brand-charcoal/30'}`}
+                            >
+                              <Image
+                                src={img}
+                                alt={`${product.name} view ${idx + 1}`}
+                                fill
+                                className="object-contain hover:scale-110 transition-transform duration-300"
+                                sizes="128px"
+                              />
+                            </button>
+                          ))}
+                        </div>
+                      )}
                     </div>
                     
                     {/* B2B Specs Table */}

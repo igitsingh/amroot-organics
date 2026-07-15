@@ -14,6 +14,7 @@ export interface B2BProduct {
   hsCode: string;
   description: string;
   image: string;
+  images?: string[];
   specifications: ProductSpecification[];
 }
 

@@ -8,7 +8,12 @@ export const b2bProducts: B2BProduct[] = [
     botanicalName: "Curcuma longa",
     hsCode: "0910.30.20",
     description: "Sourced directly from the pristine hills of Meghalaya, Lakadong Turmeric is globally renowned for its exceptionally high curcumin content, offering superior potency, vibrant color, and robust flavor profile ideal for premium nutraceutical and culinary applications.",
-    image: "/mockups/amroot_Premium LakadongTurmeric - Doypack 1KG_TEMP01.png",
+    image: "/mockups/1kg/PREMIUM TURMERIC - 1KG - WITHOUT BG.png",
+    images: [
+      "/mockups/1kg/PREMIUM TURMERIC - 1KG - WITHOUT BG.png",
+      "/mockups/1kg/BACK%20SIDE/PREMIUM TURMERIC - 1KG - BACK SIDE - WITHOUT BG.png",
+      "/mockups/250gms/PREMIUM LAKADONG TURMERIC - 250G - WITHOUT BG.png"
+    ],
     specifications: [
       {
         category: "Technical Specifications",
@@ -49,7 +54,12 @@ export const b2bProducts: B2BProduct[] = [
     botanicalName: "Curcuma longa",
     hsCode: "0910.30.20",
     description: "100% Certified Organic Turmeric cultivated using traditional, sustainable farming practices without synthetic fertilizers or pesticides. Clean, traceable, and perfect for health-conscious global brands.",
-    image: "/mockups/amroot_OrganicTurmeric - Doypack 1KG_TEMP01.png",
+    image: "/mockups/1kg/ORGANIC TURMERIC - 1KG - WITHOUT BG.png",
+    images: [
+      "/mockups/1kg/ORGANIC TURMERIC - 1KG - WITHOUT BG.png",
+      "/mockups/1kg/BACK%20SIDE/ORGANIC TURMERIC - 1KG - BACK SIDE - WITHOUT BG.png",
+      "/mockups/250gms/ORGANIC TURMERIC - 250G - WITHOUT BG.png"
+    ],
     specifications: [
       {
         category: "Technical Specifications",
@@ -90,7 +100,12 @@ export const b2bProducts: B2BProduct[] = [
     botanicalName: "Zingiber officinale",
     hsCode: "0910.11.10",
     description: "High-quality, expertly dried and processed ginger sourced from select Indian farms. Known for its strong aroma, pungent flavor, and excellent functional properties for food, beverage, and supplement industries.",
-    image: "/mockups/amroot_PremiumGinger - Doypack 1KG_TEMP01.png",
+    image: "/mockups/1kg/PREMIUM GINGER - 1KG - WITHOUT BG.png",
+    images: [
+      "/mockups/1kg/PREMIUM GINGER - 1KG - WITHOUT BG.png",
+      "/mockups/1kg/BACK%20SIDE/PREMIUM GINGER - 1KG - BACK SIDE - WITHOUT BG.png",
+      "/mockups/250gms/PREMIUM JAINTIA HILLS GINGER - 250G - WITHOUT BG.png"
+    ],
     specifications: [
       {
         category: "Technical Specifications",
@@ -131,7 +146,12 @@ export const b2bProducts: B2BProduct[] = [
     botanicalName: "Zingiber officinale",
     hsCode: "0910.11.10",
     description: "Ethically sourced, certified organic ginger cultivated in pristine conditions. Free from synthetic residues, delivering pure flavor and optimal therapeutic benefits for premium organic product lines.",
-    image: "/mockups/amroot_OrganicGinger - Doypack 1KG_TEMP01.png",
+    image: "/mockups/1kg/ORGANIC GINGER - 1KG - WITHOUT BG.png",
+    images: [
+      "/mockups/1kg/ORGANIC GINGER - 1KG - WITHOUT BG.png",
+      "/mockups/1kg/BACK%20SIDE/ORGANIC GINGER - 1KG - BACK SIDE - WITHOUT BG.png",
+      "/mockups/250gms/ORGANIC GINGER - 250G - WITHOUT BG.png"
+    ],
     specifications: [
       {
         category: "Technical Specifications",

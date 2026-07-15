@@ -3,25 +3,30 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 
 const PRODUCTS = [
   {
     name: "Organic Turmeric",
-    image: "/mockups/ORGANIC TURMERIC - 1KG - WITHOUT BG.png"
+    image: "/mockups/1kg/ORGANIC TURMERIC - 1KG - WITHOUT BG.png",
+    id: "organic-turmeric"
   },
   {
     name: "Premium Turmeric",
-    image: "/mockups/PREMIUM TURMERIC - 1KG - WITHOUT BG.png"
+    image: "/mockups/1kg/PREMIUM TURMERIC - 1KG - WITHOUT BG.png",
+    id: "lakadong-turmeric"
   },
   {
     name: "Organic Ginger",
-    image: "/mockups/ORGANIC GINGER - 1KG - WITHOUT BG.png"
+    image: "/mockups/1kg/ORGANIC GINGER - 1KG - WITHOUT BG.png",
+    id: "organic-ginger"
   },
   {
     name: "Premium Ginger",
-    image: "/mockups/PREMIUM GINGER - 1KG - WITHOUT BG.png"
+    image: "/mockups/1kg/PREMIUM GINGER - 1KG - WITHOUT BG.png",
+    id: "premium-ginger"
   }
 ];
 
@@ -54,6 +59,7 @@ function AngledMarquee({ text, direction, className, textClassName }: { text: Re
 
 export function RareProductsScroll() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const router = useRouter();
 
   // Mouse movement light effect
   const mouseX = useMotionValue(0);
@@ -130,13 +136,14 @@ export function RareProductsScroll() {
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-4 items-center justify-between w-full">
           
           {/* Left Side: Secondary Content */}
-          <div className="w-full lg:w-1/3 shrink-0 flex flex-col justify-center text-center lg:text-left">
-            <h2 className="font-[family-name:var(--font-outfit)] text-4xl sm:text-5xl lg:text-6xl text-brand-charcoal mb-4 leading-[1.1] font-medium tracking-tight">
-              <span className="block italic">rare</span>
-              <span className="block text-brand-green italic lowercase font-light tracking-normal">turmeric.</span>
-              <span className="block text-brand-green italic lowercase font-light tracking-normal">ginger.</span>
-              <span className="block text-brand-green italic lowercase font-light tracking-normal">nature.</span>
-            </h2>
+          <div className="w-full lg:w-5/12 shrink-0 flex flex-col justify-center text-center lg:text-left z-10">
+            <div className="relative w-[150%] lg:w-[800px] max-w-none mx-auto lg:mx-0 lg:-ml-24 scale-125 lg:scale-150 transform lg:origin-left">
+              <img 
+                src="/rare nature rare turmeric rare ginger.png" 
+                alt="Rare Turmeric, Ginger, Nature"
+                className="w-full h-auto object-contain"
+              />
+            </div>
           </div>
 
           {/* Right Side: Interactive 3D Carousel */}
@@ -189,8 +196,14 @@ export function RareProductsScroll() {
                       zIndex: offset === 0 ? 30 : 20,
                     }}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    onClick={() => setActiveIndex(index)}
-                    className={`absolute w-full h-full flex flex-col items-center justify-center ${isActive ? 'cursor-default' : 'cursor-pointer'}`}
+                    onClick={() => {
+                      if (isActive) {
+                        router.push(`/products/${product.id}`);
+                      } else {
+                        setActiveIndex(index);
+                      }
+                    }}
+                    className="absolute w-full h-full flex flex-col items-center justify-center cursor-pointer"
                   >
                     <div className={`relative w-full h-4/5 transform transition-transform duration-500 ${isActive ? 'hover:scale-105' : ''}`}>
                       <Image
