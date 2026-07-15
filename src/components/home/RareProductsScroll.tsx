@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { generateImageAlt, generateImageTitle } from "@/lib/seo/image";
+import { productIntelligence } from "@/lib/seo/intelligence";
 
 const PRODUCTS = [
   {
@@ -140,7 +142,9 @@ export function RareProductsScroll() {
             <div className="relative w-[150%] lg:w-[800px] max-w-none mx-auto lg:mx-0 lg:-ml-24 scale-125 lg:scale-150 transform lg:origin-left">
               <img 
                 src="/rare nature rare turmeric rare ginger.png" 
-                alt="Rare Turmeric, Ginger, Nature"
+                alt={generateImageAlt("generic", undefined, "Rare Single-Origin Turmeric and Ginger from Meghalaya")}
+                title={generateImageTitle("generic", undefined, "Rare Single-Origin Turmeric and Ginger")}
+                loading="lazy"
                 className="w-full h-auto object-contain"
               />
             </div>
@@ -208,7 +212,8 @@ export function RareProductsScroll() {
                     <div className={`relative w-full h-4/5 transform transition-transform duration-500 ${isActive ? 'hover:scale-105' : ''}`}>
                       <Image
                         src={product.image}
-                        alt={product.name}
+                        alt={generateImageAlt("product", product.id as keyof typeof productIntelligence)}
+                        title={generateImageTitle("product", product.id as keyof typeof productIntelligence)}
                         fill
                         sizes="(max-width: 768px) 100vw, 400px"
                         className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"

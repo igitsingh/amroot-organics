@@ -20,10 +20,9 @@ const outfit = Outfit({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Amroot Organics | Premium Single-Origin Ingredients",
-  description: "Premium turmeric and natural ingredients sourced from India for global brands, distributors and manufacturers.",
-};
+import { constructMetadata } from "@/lib/seo/utils";
+
+export const metadata: Metadata = constructMetadata();
 
 export default function RootLayout({
   children,

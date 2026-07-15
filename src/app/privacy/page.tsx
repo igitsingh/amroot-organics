@@ -1,6 +1,16 @@
 import React from "react";
 import Link from "next/link";
 
+import { constructMetadata } from "@/lib/seo/utils";
+import { pageIntelligence, productIntelligence } from "@/lib/seo/intelligence";
+
+export const metadata = constructMetadata({
+  title: "Privacy Policy",
+  description: "Premium organic spices exporter from India.",
+  keywords: pageIntelligence.home?.secondaryKeywords || [],
+  canonicalUrl: "https://amrootorganics.com/privacy",
+});
+
 export default function PrivacyPolicyPage() {
   return (
     <div className="bg-brand-white min-h-screen pt-12 pb-24">

@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 export function QualityCommitment() {
   return (
@@ -39,24 +38,62 @@ export function QualityCommitment() {
           </motion.div>
         </div>
 
-        {/* Visual / Image */}
+        {/* Visual / CSS Stamp in Glass Shape */}
         <div className="w-full lg:w-1/2 relative">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative w-full aspect-square md:aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl"
+            className="relative w-full aspect-square md:aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl flex items-center justify-center bg-brand-green/5 backdrop-blur-md"
           >
-            <Image 
-              src="/mockups/1kg/PREMIUM TURMERIC - 1KG - WITHOUT BG.png" 
-              alt="Premium Quality Turmeric" 
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-brand-green/20 mix-blend-overlay" />
+            {/* Overlay pattern or color */}
+            <div className="absolute inset-0 bg-brand-green/10 mix-blend-overlay" />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, rotate: -20 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+              className="relative w-64 h-64 md:w-80 md:h-80 flex items-center justify-center rounded-full border-[10px] border-brand-charcoal/10 bg-white/20 backdrop-blur-lg shadow-xl"
+            >
+              {/* Inner Ring */}
+              <div className="absolute inset-2 border-[2px] border-brand-charcoal/20 rounded-full" />
+              
+              {/* Center Logo/Text */}
+              <div className="text-center flex flex-col items-center justify-center z-10">
+                <span className="font-[family-name:var(--font-outfit)] text-4xl text-brand-charcoal font-semibold tracking-tight lowercase">
+                  amroot
+                </span>
+                <span className="font-sans font-bold text-brand-charcoal text-[10px] uppercase tracking-[0.3em] mt-1">
+                  ORGANICS
+                </span>
+                <div className="w-12 h-[2px] bg-brand-green my-3" />
+                <span className="font-serif italic text-brand-charcoal/70 text-sm">
+                  Certified Export
+                </span>
+              </div>
+
+              {/* Rotating Outer Text */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 z-0"
+              >
+                <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible opacity-60">
+                  <path
+                    id="stampPath"
+                    d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"
+                    fill="transparent"
+                  />
+                  <text className="text-[9px] font-bold uppercase tracking-widest fill-brand-charcoal">
+                    <textPath href="#stampPath" startOffset="0%">
+                      • PURE & NATURAL • LAB TESTED • ZERO ADULTERATION
+                    </textPath>
+                  </text>
+                </svg>
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
 

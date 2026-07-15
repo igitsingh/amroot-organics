@@ -10,23 +10,23 @@ const NAV_LINKS = [
   { label: "Products", href: "/products" },
   { label: "Industries", href: "/industries" },
   { label: "Quality", href: "/quality" },
-  { label: "Origin", href: "/origin" },
+  { label: "Origin", href: "/about/origin" },
 ];
 
 const LEARN_LINKS = [
-  { label: "Knowledge Hub", href: "/learn/knowledge-hub" },
-  { label: "Curcumin Guide", href: "/learn/curcumin-guide" },
-  { label: "Single-Origin Explained", href: "/learn/single-origin" },
-  { label: "Research", href: "/learn/research" },
-  { label: "FAQs", href: "/learn/faqs" },
-  { label: "Applications", href: "/learn/applications" },
-  { label: "Import Guide", href: "/learn/import-guide" },
-  { label: "Certifications", href: "/learn/certifications" },
+  { label: "Knowledge Hub", href: "/resources/knowledge-hub" },
+  { label: "Curcumin Guide", href: "/resources/curcumin-guide" },
+  { label: "Single-Origin Explained", href: "/resources/single-origin" },
+  { label: "Research", href: "/resources/research" },
+  { label: "FAQs", href: "/resources/faqs" },
+  { label: "Applications", href: "/resources/applications" },
+  { label: "Import Guide", href: "/resources/import-guide" },
+  { label: "Certifications", href: "/quality/certifications" },
 ];
 
 const RIGHT_LINKS = [
   { label: "About", href: "/about" },
-  { label: "Community", href: "/community" },
+  { label: "Community", href: "/about/community" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -187,13 +187,13 @@ export function Header() {
             <Search className="w-5 h-5" strokeWidth={1.5} />
           </button>
           <Link
-            href="/request-samples"
+            href="/export-quantity"
             className={cn(
               "px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-sm hover:shadow-md",
               scrolled ? "bg-brand-white text-brand-green hover:bg-brand-white/90" : "bg-black text-white hover:bg-black/80"
             )}
           >
-            Request Samples
+            Export Quantity
           </Link>
         </div>
 
@@ -290,11 +290,11 @@ export function Header() {
               ))}
 
               <Link
-                href="/request-samples"
+                href="/export-quantity"
                 onClick={() => setMobileMenuOpen(false)}
                 className="bg-brand-white text-brand-green px-6 py-4 rounded-full text-center mt-8 font-semibold hover:bg-brand-beige transition-colors"
               >
-                Request Samples
+                Export Quantity
               </Link>
             </nav>
           </motion.div>

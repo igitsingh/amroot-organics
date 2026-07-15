@@ -29,8 +29,8 @@ export function QualityHero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-7xl font-serif leading-tight mb-8"
           >
-            Purity Through <br />
-            <span className="text-brand-green italic font-light">Precision.</span>
+            Export <br />
+            <span className="text-brand-green italic font-light">Quality.</span>
           </motion.h1>
           
           <motion.p 

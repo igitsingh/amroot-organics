@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { generateImageAlt, generateImageTitle } from "@/lib/seo/image";
 
 export function GlobalStandards() {
   const certifications = [
@@ -145,7 +146,8 @@ export function GlobalStandards() {
                 {/* We use next/image with object-contain to nicely fit diverse logo aspect ratios */}
                 <Image 
                   src={cert.image} 
-                  alt={`${cert.name} logo`} 
+                  alt={generateImageAlt("certification", undefined, cert.name)}
+                  title={generateImageTitle("certification", undefined, cert.name)}
                   fill
                   className="object-contain object-left group-hover:scale-105 transition-transform duration-500" 
                 />

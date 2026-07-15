@@ -3,10 +3,15 @@ import { QualityHero } from "@/components/quality/QualityHero";
 import { ProcessingStandards } from "@/components/quality/ProcessingStandards";
 import { QualityCommitment } from "@/components/quality/QualityCommitment";
 
-export const metadata: Metadata = {
-  title: "Quality Processing | Amroot Organics",
-  description: "Explore the rigorous physical quality control, optical sorting, and advanced processing standards at Amroot Organics.",
-};
+import { constructMetadata } from "@/lib/seo/utils";
+import { pageIntelligence, productIntelligence } from "@/lib/seo/intelligence";
+
+export const metadata = constructMetadata({
+  title: "Export Quality & Certifications",
+  description: "Explore our rigorous quality control, lab testing, and global organic certifications for export.",
+  keywords: pageIntelligence.quality?.secondaryKeywords || [],
+  canonicalUrl: "https://amrootorganics.com/export-quality",
+});
 
 export default function QualityPage() {
   return (

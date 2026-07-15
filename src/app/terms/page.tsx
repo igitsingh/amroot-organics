@@ -1,5 +1,14 @@
 import React from "react";
 import Link from "next/link";
+import { constructMetadata } from "@/lib/seo/utils";
+import { pageIntelligence } from "@/lib/seo/intelligence";
+
+export const metadata = constructMetadata({
+  title: "Terms of Service",
+  description: "Premium organic spices exporter from India.",
+  keywords: pageIntelligence.home?.secondaryKeywords || [],
+  canonicalUrl: "https://amrootorganics.com/terms",
+});
 
 export default function TermsOfServicePage() {
   return (

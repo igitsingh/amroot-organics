@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Download, Beaker, Box, Tag } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { generateImageAlt, generateImageTitle } from "@/lib/seo/image";
+import { productIntelligence } from "@/lib/seo/intelligence";
 
 export interface ProductCardProps {
   id: string;
@@ -44,7 +46,8 @@ export function ProductCard({
         {imageUrl ? (
           <Image 
             src={imageUrl} 
-            alt={name} 
+            alt={generateImageAlt("product", id as keyof typeof productIntelligence)} 
+            title={generateImageTitle("product", id as keyof typeof productIntelligence)}
             fill 
             className="object-contain p-4 group-hover:scale-105 transition-transform duration-700" 
           />
