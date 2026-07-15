@@ -98,7 +98,7 @@ export function TrustCards() {
       
       {/* Text Content - Left Side */}
       <div className="w-full lg:w-[40%] xl:w-[35%] shrink-0 px-6 lg:pl-12 xl:pl-24 z-10 relative">
-        <div className="max-w-xl">
+        <div className="max-w-xl text-center lg:text-left mx-auto lg:mx-0">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -106,7 +106,7 @@ export function TrustCards() {
             transition={{ duration: 0.6 }}
             className="font-[family-name:var(--font-outfit)] font-semibold tracking-tight text-4xl sm:text-5xl lg:text-6xl text-brand-charcoal mb-6 leading-[1.1]"
           >
-            Built for Global <br/>
+            Built for Global <br className="hidden sm:block" />
             <span className="text-brand-green italic">Procurement</span>
           </motion.h2>
           <motion.p 
@@ -114,7 +114,7 @@ export function TrustCards() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-brand-charcoal/70 text-lg font-light leading-relaxed"
+            className="text-brand-charcoal/70 text-base sm:text-lg font-light leading-relaxed"
           >
             Our infrastructure is designed to give you absolute confidence. From farm to facility to freight, 
             every step is optimized for quality and reliability.
@@ -122,8 +122,8 @@ export function TrustCards() {
         </div>
       </div>
 
-      {/* Cards Content - Right Side */}
-      <div className="w-full lg:w-[60%] xl:w-[65%] flex flex-col gap-5 relative z-0 [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+      {/* Cards Content - Desktop (Animated) */}
+      <div className="hidden lg:flex w-full lg:w-[60%] xl:w-[65%] flex-col gap-5 relative z-0 [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
         {/* Row 1 */}
         <motion.div style={{ x: x1 }} className="flex gap-6 w-max px-6 lg:px-0">
           {row1.map((card, idx) => (
@@ -143,6 +143,15 @@ export function TrustCards() {
             <Card key={`dup2-${idx}`} card={card} index={idx + 6} />
           ))}
         </motion.div>
+      </div>
+
+      {/* Cards Content - Mobile (Native Scroll) */}
+      <div className="flex lg:hidden w-full overflow-x-auto snap-x snap-mandatory px-6 pb-8 gap-4 no-scrollbar">
+        {TRUST_CARDS.map((card, idx) => (
+          <div key={idx} className="snap-center shrink-0 w-[85vw] sm:w-[320px]">
+            <Card card={card} index={idx} />
+          </div>
+        ))}
       </div>
     </section>
   );

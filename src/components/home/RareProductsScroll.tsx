@@ -130,8 +130,8 @@ export function RareProductsScroll() {
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-4 items-center justify-between w-full">
           
           {/* Left Side: Secondary Content */}
-          <div className="w-full lg:w-1/3 shrink-0 flex flex-col justify-center">
-            <h2 className="font-[family-name:var(--font-outfit)] text-5xl sm:text-6xl text-brand-charcoal mb-4 leading-[1.1] font-medium tracking-tight">
+          <div className="w-full lg:w-1/3 shrink-0 flex flex-col justify-center text-center lg:text-left">
+            <h2 className="font-[family-name:var(--font-outfit)] text-4xl sm:text-5xl lg:text-6xl text-brand-charcoal mb-4 leading-[1.1] font-medium tracking-tight">
               <span className="block italic">rare</span>
               <span className="block text-brand-green italic lowercase font-light tracking-normal">turmeric.</span>
               <span className="block text-brand-green italic lowercase font-light tracking-normal">ginger.</span>
@@ -140,7 +140,7 @@ export function RareProductsScroll() {
           </div>
 
           {/* Right Side: Interactive 3D Carousel */}
-          <div className="w-full lg:w-1/2 relative flex items-center justify-center group/carousel h-[450px] lg:h-[600px] [perspective:1000px]">
+          <div className="w-full lg:w-1/2 relative flex items-center justify-center group/carousel h-[350px] sm:h-[450px] lg:h-[600px] [perspective:1000px] mt-8 lg:mt-0">
             {/* Navigation Buttons */}
             <button 
               onClick={scrollLeft} 
@@ -159,7 +159,20 @@ export function RareProductsScroll() {
             </button>
 
             {/* 3D Carousel Container */}
-            <div className="relative w-full max-w-[380px] h-full flex items-center justify-center [transform-style:preserve-3d]">
+            <div 
+              className="relative w-full max-w-[280px] sm:max-w-[380px] h-full flex items-center justify-center [transform-style:preserve-3d]"
+              onPointerDown={(e) => {
+                // Simple touch swipe for mobile
+                const startX = e.clientX;
+                const handlePointerUp = (upEvent: PointerEvent) => {
+                  const diff = startX - upEvent.clientX;
+                  if (diff > 50) scrollRight();
+                  if (diff < -50) scrollLeft();
+                  window.removeEventListener('pointerup', handlePointerUp);
+                };
+                window.addEventListener('pointerup', handlePointerUp);
+              }}
+            >
               {PRODUCTS.map((product, index) => {
                 const offset = getOffset(index);
                 const isActive = offset === 0;
