@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
@@ -53,18 +53,21 @@ function AngledMarquee({ text, direction, className, textClassName }: { text: st
 }
 
 export function RareProductsScroll() {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const scrollLeft = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -350, behavior: 'smooth' });
-    }
+    setActiveIndex((prev) => (prev - 1 + PRODUCTS.length) % PRODUCTS.length);
   };
 
   const scrollRight = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 350, behavior: 'smooth' });
-    }
+    setActiveIndex((prev) => (prev + 1) % PRODUCTS.length);
+  };
+
+  const getOffset = (index: number) => {
+    let diff = index - activeIndex;
+    if (diff < -1) diff += PRODUCTS.length;
+    if (diff > 1) diff -= PRODUCTS.length;
+    return diff;
   };
 
   return (
@@ -74,8 +77,8 @@ export function RareProductsScroll() {
       <AngledMarquee 
         text="RARE HARVEST" 
         direction={-1} 
-        className="top-10 lg:top-16 rotate-[-2deg] bg-brand-charcoal py-3 lg:py-4 z-20 shadow-xl"
-        textClassName="text-white font-[family-name:var(--font-outfit)] text-2xl lg:text-4xl font-bold tracking-widest uppercase"
+        className="top-10 lg:top-16 rotate-[-2deg] bg-brand-charcoal py-1.5 lg:py-2 z-20 shadow-xl"
+        textClassName="text-white font-[family-name:var(--font-outfit)] text-lg lg:text-2xl font-bold tracking-widest uppercase"
       />
 
       {/* 2. Middle Moving Background */}
@@ -83,15 +86,15 @@ export function RareProductsScroll() {
         text="RARE NATURE" 
         direction={1} 
         className="top-1/2 -translate-y-1/2 rotate-[3deg] z-0 opacity-15"
-        textClassName="text-brand-charcoal font-[family-name:var(--font-outfit)] text-7xl lg:text-[12rem] font-black tracking-tight uppercase leading-none"
+        textClassName="text-brand-charcoal font-[family-name:var(--font-outfit)] text-5xl lg:text-[8rem] font-black tracking-tight uppercase leading-none"
       />
 
       {/* 3. Bottom Moving Line */}
       <AngledMarquee 
         text="RARE ORIGIN" 
         direction={-1} 
-        className="bottom-10 lg:bottom-16 rotate-[1deg] bg-brand-green py-3 lg:py-4 z-20 shadow-xl"
-        textClassName="text-[#F4D03F] font-[family-name:var(--font-outfit)] text-2xl lg:text-4xl font-bold tracking-widest uppercase"
+        className="bottom-10 lg:bottom-16 rotate-[1deg] bg-brand-green py-1.5 lg:py-2 z-20 shadow-xl"
+        textClassName="text-[#F4D03F] font-[family-name:var(--font-outfit)] text-lg lg:text-2xl font-bold tracking-widest uppercase"
       />
 
       <div className="w-full max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
@@ -106,12 +109,12 @@ export function RareProductsScroll() {
             </h2>
           </div>
 
-          {/* Center: Interactive Horizontal Carousel */}
-          <div className="w-full lg:w-1/3 relative flex items-center justify-center group">
+          {/* Right Side: Interactive 3D Carousel */}
+          <div className="w-full lg:w-1/2 relative flex items-center justify-center group h-[450px] lg:h-[600px] [perspective:1000px]">
             {/* Navigation Buttons */}
             <button 
               onClick={scrollLeft} 
-              className="absolute top-1/2 left-0 lg:-left-12 -translate-y-1/2 z-20 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg text-brand-charcoal transition-all opacity-100 lg:opacity-0 lg:group-hover:opacity-100 hover:scale-110"
+              className="absolute top-1/2 left-4 lg:-left-8 -translate-y-1/2 z-40 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg text-brand-charcoal transition-all opacity-100 lg:opacity-0 lg:group-hover:opacity-100 hover:scale-110"
               aria-label="Previous product"
             >
               <ChevronLeft className="w-6 h-6" />
@@ -119,55 +122,57 @@ export function RareProductsScroll() {
             
             <button 
               onClick={scrollRight} 
-              className="absolute top-1/2 right-0 lg:-right-12 -translate-y-1/2 z-20 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg text-brand-charcoal transition-all opacity-100 lg:opacity-0 lg:group-hover:opacity-100 hover:scale-110"
+              className="absolute top-1/2 right-4 lg:-right-8 -translate-y-1/2 z-40 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg text-brand-charcoal transition-all opacity-100 lg:opacity-0 lg:group-hover:opacity-100 hover:scale-110"
               aria-label="Next product"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
 
-            {/* Scroll Container */}
-            <div 
-              ref={scrollRef}
-              className="flex overflow-x-auto snap-x snap-mandatory w-full max-w-[500px] aspect-[4/5] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] z-10"
-            >
-              {PRODUCTS.map((product) => (
-                <div 
-                  key={product.name} 
-                  className="w-full shrink-0 snap-center flex flex-col items-center justify-center relative p-4 cursor-grab active:cursor-grabbing"
-                >
-                  <div className="relative w-full h-full transform transition-transform duration-500 hover:scale-105">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 500px"
-                      className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
-                    />
-                  </div>
-                  <div className="absolute bottom-8 bg-brand-white/95 backdrop-blur-sm px-6 py-2 rounded-full shadow-md">
-                    <h3 className="font-semibold text-brand-charcoal text-sm tracking-wide">
-                      {product.name}
-                    </h3>
-                  </div>
-                </div>
-              ))}
+            {/* 3D Carousel Container */}
+            <div className="relative w-full max-w-[380px] h-full flex items-center justify-center [transform-style:preserve-3d]">
+              {PRODUCTS.map((product, index) => {
+                const offset = getOffset(index);
+                const isActive = offset === 0;
+                
+                return (
+                  <motion.div 
+                    key={product.name}
+                    initial={false}
+                    animate={{
+                      x: offset === 0 ? "0%" : offset === 1 ? "60%" : offset === -1 ? "-60%" : "0%",
+                      scale: offset === 0 ? 1 : offset === 1 || offset === -1 ? 0.75 : 0.5,
+                      rotateY: offset === 0 ? 0 : offset === 1 ? -20 : offset === -1 ? 20 : 0,
+                      opacity: Math.abs(offset) >= 2 ? 0 : 1,
+                      zIndex: offset === 0 ? 30 : 20,
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    onClick={() => setActiveIndex(index)}
+                    className={`absolute w-full h-full flex flex-col items-center justify-center ${isActive ? 'cursor-default' : 'cursor-pointer'}`}
+                  >
+                    <div className={`relative w-full h-4/5 transform transition-transform duration-500 ${isActive ? 'hover:scale-105' : ''}`}>
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 400px"
+                        className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
+                      />
+                    </div>
+                    <motion.div 
+                      animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 10 }}
+                      className="absolute bottom-8 bg-brand-white/95 backdrop-blur-sm px-6 py-2 rounded-full shadow-lg border border-white/20 pointer-events-none"
+                    >
+                      <h3 className="font-semibold text-brand-charcoal text-sm tracking-wide">
+                        {product.name}
+                      </h3>
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 
-          {/* Right Side: Description Content */}
-          <div className="w-full lg:w-1/3 shrink-0 flex flex-col justify-center lg:pl-8">
-            <div className="w-12 h-1 bg-brand-green mb-8 rounded-full"></div>
-            <p className="text-brand-charcoal/90 text-lg sm:text-xl font-medium leading-relaxed mb-10 max-w-sm bg-white/40 p-6 rounded-3xl backdrop-blur-sm border border-white/50 shadow-xl">
-              An exclusive collection of just two pristine ingredients—Turmeric and Ginger—spanning four meticulously crafted SKUs. Reserved for discerning global importers and distributors who demand the absolute finest.
-            </p>
-            <Link
-              href="/products"
-              className="group flex w-max items-center gap-2 bg-brand-charcoal text-white px-6 py-3 rounded-full font-bold tracking-widest text-sm hover:bg-brand-green transition-all uppercase shadow-lg hover:shadow-brand-green/30"
-            >
-              PLACE YOUR RARE ORDER
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
+
 
         </div>
       </div>
