@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 
 const PRODUCTS = [
   {
@@ -25,7 +25,7 @@ const PRODUCTS = [
   }
 ];
 
-function AngledMarquee({ text, direction, className, textClassName }: { text: string, direction: 1 | -1, className?: string, textClassName?: string }) {
+function AngledMarquee({ text, direction, className, textClassName }: { text: React.ReactNode, direction: 1 | -1, className?: string, textClassName?: string }) {
   return (
     <div className={`absolute w-[120%] -left-[10%] flex overflow-hidden pointer-events-none ${className}`}>
       <motion.div
@@ -55,6 +55,16 @@ function AngledMarquee({ text, direction, className, textClassName }: { text: st
 export function RareProductsScroll() {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // Mouse movement light effect
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
   const scrollLeft = () => {
     setActiveIndex((prev) => (prev - 1 + PRODUCTS.length) % PRODUCTS.length);
   };
@@ -71,22 +81,41 @@ export function RareProductsScroll() {
   };
 
   return (
-    <section className="bg-[#F4D03F] relative w-full py-32 lg:py-40 overflow-hidden flex flex-col justify-center min-h-screen">
+    <section 
+      className="bg-[#F4D03F] relative w-full py-32 lg:py-40 overflow-hidden flex flex-col justify-center min-h-screen group"
+      onMouseMove={handleMouseMove}
+    >
       
+      {/* Mouse spotlight soil mask effect */}
+      <motion.div
+        className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 z-0"
+        style={{
+          backgroundImage: `url('/images/soil-texture.png')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          WebkitMaskImage: useMotionTemplate`
+            radial-gradient(
+              400px circle at ${mouseX}px ${mouseY}px,
+              black 0%,
+              transparent 100%
+            )
+          `,
+          maskImage: useMotionTemplate`
+            radial-gradient(
+              400px circle at ${mouseX}px ${mouseY}px,
+              black 0%,
+              transparent 100%
+            )
+          `
+        }}
+      />
+
       {/* 1. Top Moving Line */}
       <AngledMarquee 
         text="RARE HARVEST" 
         direction={-1} 
         className="top-10 lg:top-16 rotate-[-2deg] bg-brand-charcoal py-1.5 lg:py-2 z-20 shadow-xl"
         textClassName="text-white font-[family-name:var(--font-outfit)] text-lg lg:text-2xl font-bold tracking-widest uppercase"
-      />
-
-      {/* 2. Middle Moving Background */}
-      <AngledMarquee 
-        text="RARE NATURE" 
-        direction={1} 
-        className="top-1/2 -translate-y-1/2 rotate-[3deg] z-0 opacity-15"
-        textClassName="text-brand-charcoal font-[family-name:var(--font-outfit)] text-5xl lg:text-[8rem] font-black tracking-tight uppercase leading-none"
       />
 
       {/* 3. Bottom Moving Line */}
@@ -106,15 +135,16 @@ export function RareProductsScroll() {
               <span className="block italic">rare</span>
               <span className="block text-brand-green italic lowercase font-light tracking-normal">turmeric.</span>
               <span className="block text-brand-green italic lowercase font-light tracking-normal">ginger.</span>
+              <span className="block text-brand-green italic lowercase font-light tracking-normal">nature.</span>
             </h2>
           </div>
 
           {/* Right Side: Interactive 3D Carousel */}
-          <div className="w-full lg:w-1/2 relative flex items-center justify-center group h-[450px] lg:h-[600px] [perspective:1000px]">
+          <div className="w-full lg:w-1/2 relative flex items-center justify-center group/carousel h-[450px] lg:h-[600px] [perspective:1000px]">
             {/* Navigation Buttons */}
             <button 
               onClick={scrollLeft} 
-              className="absolute top-1/2 left-4 lg:-left-8 -translate-y-1/2 z-40 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg text-brand-charcoal transition-all opacity-100 lg:opacity-0 lg:group-hover:opacity-100 hover:scale-110"
+              className="absolute top-1/2 left-4 lg:-left-8 -translate-y-1/2 z-40 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg text-brand-charcoal transition-all opacity-100 lg:opacity-0 lg:group-hover/carousel:opacity-100 hover:scale-110"
               aria-label="Previous product"
             >
               <ChevronLeft className="w-6 h-6" />
@@ -122,7 +152,7 @@ export function RareProductsScroll() {
             
             <button 
               onClick={scrollRight} 
-              className="absolute top-1/2 right-4 lg:-right-8 -translate-y-1/2 z-40 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg text-brand-charcoal transition-all opacity-100 lg:opacity-0 lg:group-hover:opacity-100 hover:scale-110"
+              className="absolute top-1/2 right-4 lg:-right-8 -translate-y-1/2 z-40 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg text-brand-charcoal transition-all opacity-100 lg:opacity-0 lg:group-hover/carousel:opacity-100 hover:scale-110"
               aria-label="Next product"
             >
               <ChevronRight className="w-6 h-6" />
