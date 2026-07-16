@@ -20,14 +20,32 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="absolute inset-0 z-10 w-full h-full pointer-events-none">
+      <div className="absolute inset-0 z-10 w-full h-full pointer-events-none flex flex-col justify-end pb-12 sm:pb-0 sm:block">
 
+        {/* --- MOBILE BUTTONS (Stacked at bottom) --- */}
+        <div className="flex sm:hidden flex-col gap-4 items-center justify-center pointer-events-auto px-6 w-full mt-auto mb-16">
+          <Link
+            href="/export/quantity"
+            className="w-full flex justify-center items-center gap-2 bg-brand-green text-brand-white px-6 py-4 rounded-full text-[15px] font-medium shadow-xl hover:bg-[#023A33] transition-all"
+          >
+            Export Quantity
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+          <Link
+            href="/products"
+            className="w-full flex justify-center items-center gap-2 bg-[#EAB308] text-brand-green px-6 py-4 rounded-full text-[15px] font-bold shadow-xl hover:bg-[#D9A05B] transition-all"
+          >
+            Explore Products
+          </Link>
+        </div>
+
+        {/* --- DESKTOP BUTTONS (Absolute positioned to match image text) --- */}
         {/* Left Button (Under RARE NATURE) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute top-[32%] sm:top-[29%] lg:top-[26%] left-[14%] lg:left-[20%] xl:left-[23%] pointer-events-auto flex justify-start"
+          className="hidden sm:flex absolute top-[35%] sm:top-[32%] lg:top-[29%] left-[14%] lg:left-[20%] xl:left-[23%] pointer-events-auto justify-start"
         >
           <Link
             href="/export/quantity"
@@ -43,7 +61,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute top-[32%] sm:top-[28%] lg:top-[25%] right-[16%] lg:right-[21%] xl:right-[24%] pointer-events-auto flex justify-end"
+          className="hidden sm:flex absolute top-[32%] sm:top-[28%] lg:top-[25%] right-[16%] lg:right-[21%] xl:right-[24%] pointer-events-auto justify-end"
         >
           <Link
             href="/products"

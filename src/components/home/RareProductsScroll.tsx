@@ -138,14 +138,14 @@ export function RareProductsScroll() {
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-4 items-center justify-between w-full">
           
           {/* Left Side: Secondary Content */}
-          <div className="w-full lg:w-5/12 shrink-0 flex flex-col justify-center text-center lg:text-left z-10">
-            <div className="relative w-[150%] lg:w-[800px] max-w-none mx-auto lg:mx-0 lg:-ml-24 scale-125 lg:scale-150 transform lg:origin-left">
+          <div className="w-full lg:w-5/12 shrink-0 flex flex-col justify-center text-center lg:text-left z-10 mt-12 lg:mt-0">
+            <div className="relative w-full sm:w-[150%] lg:w-[800px] max-w-none mx-auto lg:mx-0 lg:-ml-24 scale-100 sm:scale-125 lg:scale-150 transform lg:origin-left">
               <img 
                 src="/rare nature rare turmeric rare ginger.png" 
                 alt={generateImageAlt("generic", undefined, "Rare Single-Origin Turmeric and Ginger from Meghalaya")}
                 title={generateImageTitle("generic", undefined, "Rare Single-Origin Turmeric and Ginger")}
                 loading="lazy"
-                className="w-full h-auto object-contain"
+                className="w-full h-auto object-contain px-4 sm:px-0"
               />
             </div>
           </div>
