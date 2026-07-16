@@ -12,7 +12,8 @@ export const b2bProducts: B2BProduct[] = [
     images: [
       "/mockups/1kg/PREMIUM TURMERIC - 1KG - WITHOUT BG.png",
       "/mockups/1kg/BACK%20SIDE/PREMIUM TURMERIC - 1KG - BACK SIDE - WITHOUT BG.png",
-      "/mockups/250gms/PREMIUM LAKADONG TURMERIC - 250G - WITHOUT BG.png"
+      "/mockups/250gms/PREMIUM LAKADONG TURMERIC - 250G - WITHOUT BG.png",
+      "/mockups/500gms/PREMIUM LAKADONG TURMERIC - 500gms - WITHOUT BG.png"
     ],
     specifications: [
       {
@@ -58,7 +59,8 @@ export const b2bProducts: B2BProduct[] = [
     images: [
       "/mockups/1kg/ORGANIC TURMERIC - 1KG - WITHOUT BG.png",
       "/mockups/1kg/BACK%20SIDE/ORGANIC TURMERIC - 1KG - BACK SIDE - WITHOUT BG.png",
-      "/mockups/250gms/ORGANIC TURMERIC - 250G - WITHOUT BG.png"
+      "/mockups/250gms/ORGANIC TURMERIC - 250G - WITHOUT BG.png",
+      "/mockups/500gms/ORGANIC TURMERIC - 500gms - WITHOUT BG.png"
     ],
     specifications: [
       {
@@ -104,7 +106,8 @@ export const b2bProducts: B2BProduct[] = [
     images: [
       "/mockups/1kg/PREMIUM GINGER - 1KG - WITHOUT BG.png",
       "/mockups/1kg/BACK%20SIDE/PREMIUM GINGER - 1KG - BACK SIDE - WITHOUT BG.png",
-      "/mockups/250gms/PREMIUM JAINTIA HILLS GINGER - 250G - WITHOUT BG.png"
+      "/mockups/250gms/PREMIUM JAINTIA HILLS GINGER - 250G - WITHOUT BG.png",
+      "/mockups/500gms/PREMIUM GINGER - 500gms - WITHOUT BG.png"
     ],
     specifications: [
       {
@@ -150,7 +153,8 @@ export const b2bProducts: B2BProduct[] = [
     images: [
       "/mockups/1kg/ORGANIC GINGER - 1KG - WITHOUT BG.png",
       "/mockups/1kg/BACK%20SIDE/ORGANIC GINGER - 1KG - BACK SIDE - WITHOUT BG.png",
-      "/mockups/250gms/ORGANIC GINGER - 250G - WITHOUT BG.png"
+      "/mockups/250gms/ORGANIC GINGER - 250G - WITHOUT BG.png",
+      "/mockups/500gms/ORGANIC GINGER - 500gms - WITHOUT BG.png"
     ],
     specifications: [
       {

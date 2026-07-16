@@ -1,146 +1,189 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ProductSpecTable } from "./ProductSpecTable";
-import { ArrowRight, Download, ChevronDown, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import Link from "next/link";
 import { b2bProducts } from "@/lib/data/products";
 
 export function ProductsCatalog({ initialActiveProduct }: { initialActiveProduct?: string }) {
-  const [activeProduct, setActiveProduct] = useState<string>(
-    initialActiveProduct || b2bProducts[0].id
-  );
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  useEffect(() => {
+    if (initialActiveProduct) {
+      const el = document.getElementById(initialActiveProduct);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  }, [initialActiveProduct]);
 
   return (
-    <div className="bg-[#FAF8F5] py-24">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="mb-16 md:mb-24 text-center max-w-3xl mx-auto">
-          <h2 className="text-sm font-bold text-brand-green uppercase tracking-widest mb-4">
-            Product Portfolio
-          </h2>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-brand-charcoal mb-6">
-            Export-Grade Ingredients
-          </h1>
-          <p className="text-lg text-brand-charcoal/70">
-            Sourced responsibly from India, processed to global standards, and ready for international distribution. Explore our detailed B2B specifications below.
-          </p>
+    <div className="bg-[#FAF8F5] min-h-screen pb-32">
+      {/* Header */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-20 text-center">
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+          className="text-brand-green uppercase tracking-[0.2em] text-sm font-bold mb-6"
+        >
+          The Amroot Collection
+        </motion.p>
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
+          className="text-5xl md:text-7xl font-serif text-brand-charcoal mb-8"
+        >
+          Uncompromising Purity
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
+          className="max-w-2xl mx-auto text-lg md:text-xl text-brand-charcoal/70 leading-relaxed"
+        >
+          Sourced from the rarest soils of India, meticulously processed, and packaged for the world's most discerning brands and households.
+        </motion.p>
+      </div>
+
+      {/* 1KG+ Category */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-32">
+        <div className="border-b border-brand-charcoal/20 pb-6 mb-16">
+          <h2 className="text-3xl md:text-4xl font-serif text-brand-charcoal mb-3">1KG & Bulk Portfolio</h2>
+          <p className="text-brand-charcoal/60 uppercase tracking-widest text-sm font-medium">For Wholesalers • Importers • Distributors • Retailers</p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
-          {/* Sidebar / Product Selection */}
-          <div className="lg:w-1/3 shrink-0 flex flex-col gap-4">
-            <h3 className="text-xl font-serif text-brand-charcoal mb-4">Select Product</h3>
-            {b2bProducts.map((product) => (
-              <button
-                key={product.id}
-                onClick={() => {
-                  setActiveProduct(product.id);
-                  setActiveImageIndex(0);
-                }}
-                className={`text-left px-6 py-5 rounded-2xl transition-all flex items-center justify-between border ${
-                  activeProduct === product.id
-                    ? "bg-white border-brand-green/30 shadow-md"
-                    : "bg-transparent border-brand-charcoal/10 hover:border-brand-charcoal/30 hover:bg-white/50"
-                }`}
-              >
-                <div>
-                  <div className={`font-medium mb-1 ${activeProduct === product.id ? "text-brand-green" : "text-brand-charcoal"}`}>
-                    {product.name}
+        <div className="space-y-32">
+          {b2bProducts.map((product, idx) => (
+            <div id={product.id} key={product.id} className={`flex flex-col ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-20 items-start scroll-mt-32`}>
+              
+              {/* Image Section */}
+              <div className="w-full lg:w-1/2 lg:sticky top-32">
+                <div className="relative w-full aspect-[4/5] rounded-[2rem] overflow-hidden bg-gradient-to-b from-[#F4EFE6] to-white shadow-xl border border-white/50 group flex items-center justify-center p-8 lg:p-12">
+                  <div className="absolute inset-0 w-full h-full">
+                    <Image
+                      src={product.images ? product.images[0] : product.image}
+                      alt={product.name}
+                      fill
+                      className="object-contain p-12 drop-shadow-2xl group-hover:scale-105 transition-transform duration-1000 ease-out"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
                   </div>
-                  <div className="text-xs text-brand-charcoal/60 font-mono">HS: {product.hsCode}</div>
+                  {/* Subtle Luxury Badges */}
+                  <div className="absolute top-8 left-8 flex flex-col gap-2">
+                    <span className="bg-brand-charcoal text-white text-xs px-4 py-1.5 rounded-full tracking-widest uppercase font-medium shadow-md">1 KG+</span>
+                    <span className="bg-brand-green text-white text-xs px-4 py-1.5 rounded-full tracking-widest uppercase font-medium shadow-md">Export Grade</span>
+                  </div>
                 </div>
-                {activeProduct === product.id && (
-                  <CheckCircle2 className="w-5 h-5 text-brand-green" />
+                
+                {/* Secondary Images/Thumbnails */}
+                {product.images && product.images.length > 1 && (
+                  <div className="flex gap-4 mt-6">
+                    <div className="w-20 h-20 rounded-2xl bg-white border border-brand-charcoal/10 relative overflow-hidden flex items-center justify-center p-2 shadow-sm">
+                       <Image src={product.images[0]} alt="Front" fill className="object-contain p-2" />
+                    </div>
+                    {product.images[1] && product.images[1].includes("BACK") && (
+                      <div className="w-20 h-20 rounded-2xl bg-white border border-brand-charcoal/10 relative overflow-hidden flex items-center justify-center p-2 shadow-sm">
+                         <Image src={product.images[1]} alt="Back" fill className="object-contain p-2" />
+                      </div>
+                    )}
+                  </div>
                 )}
-              </button>
-            ))}
+              </div>
 
-            <div className="mt-8 p-6 bg-brand-charcoal text-white rounded-2xl">
-              <h4 className="font-serif text-xl mb-3">Bulk Inquiry</h4>
-              <p className="text-sm text-white/70 mb-6">Need a custom specification, private labeling, or bulk pricing? Contact our export team.</p>
-              <Link
-                href="/request-samples"
-                className="inline-flex items-center justify-center gap-2 bg-brand-orange text-white w-full py-3 rounded-full font-medium hover:bg-brand-orange/90 transition-colors text-sm"
-              >
-                Request Quote <ArrowRight className="w-4 h-4" />
-              </Link>
+              {/* Details Section */}
+              <div className="w-full lg:w-1/2 flex flex-col pt-4 lg:pt-8">
+                <ProductSpecTable product={product} />
+                
+                <div className="mt-10 flex flex-wrap items-center gap-4">
+                  <Link href="/request-samples" className="bg-brand-green text-white px-8 py-4 rounded-full font-medium hover:bg-brand-green/90 transition-colors flex items-center gap-2 shadow-lg shadow-brand-green/20">
+                    Request Quote <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <button className="flex items-center gap-2 px-8 py-4 border border-brand-charcoal/20 rounded-full font-medium text-brand-charcoal hover:bg-white transition-colors shadow-sm">
+                    <Download className="w-4 h-4" /> Tech Data Sheet
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 500G Category */}
+      <div className="bg-brand-yellow py-32 text-brand-charcoal border-y border-brand-charcoal/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="border-b border-brand-charcoal/20 pb-6 mb-16 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-serif text-brand-green mb-3">500gms Collection</h2>
+              <p className="text-brand-charcoal/60 uppercase tracking-widest text-sm font-medium">For Wholesalers • Importers • Distributors • Retailers</p>
+            </div>
+            <div className="bg-brand-charcoal/5 backdrop-blur-md border border-brand-charcoal/10 px-6 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] text-brand-charcoal shrink-0 shadow-sm">
+              Coming Soon
             </div>
           </div>
 
-          {/* Product Details Area */}
-          <div className="lg:w-2/3">
-            <AnimatePresence mode="wait">
-              {b2bProducts.map((product) => 
-                product.id === activeProduct ? (
-                  <motion.div
-                    key={product.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex flex-col gap-8"
-                  >
-                    {/* Hero Image for Product */}
-                    <div className="flex flex-col gap-4">
-                      {/* Main Image */}
-                      <div className="relative w-full aspect-square sm:aspect-[4/3] rounded-[2.5rem] overflow-hidden bg-gradient-to-b from-white to-[#F4EFE6]/50 shadow-sm border border-white/60 flex items-center justify-center p-8 sm:p-12">
-                        <div className="relative w-full h-full">
-                          <Image
-                            src={product.images ? product.images[activeImageIndex] : product.image}
-                            alt={product.name}
-                            fill
-                            className="object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700 ease-out"
-                            sizes="(max-width: 1024px) 100vw, 66vw"
-                            priority
-                          />
-                        </div>
-                      </div>
-                      
-                      {/* Thumbnails */}
-                      {product.images && product.images.length > 1 && (
-                        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 no-scrollbar">
-                          {product.images.map((img, idx) => (
-                            <button 
-                              key={idx} 
-                              onClick={() => setActiveImageIndex(idx)}
-                              className={`snap-start shrink-0 relative w-24 h-24 sm:w-32 sm:h-32 rounded-2xl overflow-hidden bg-white shadow-sm border flex items-center justify-center p-3 transition-all ${activeImageIndex === idx ? 'border-brand-green ring-2 ring-brand-green/20' : 'border-brand-charcoal/10 hover:border-brand-charcoal/30'}`}
-                            >
-                              <Image
-                                src={img}
-                                alt={`${product.name} view ${idx + 1}`}
-                                fill
-                                className="object-contain hover:scale-110 transition-transform duration-300"
-                                sizes="128px"
-                              />
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                    
-                    {/* B2B Specs Table */}
-                    <ProductSpecTable product={product} />
-
-                    {/* Action buttons */}
-                    <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-brand-charcoal/10">
-                      <button className="flex items-center gap-2 px-6 py-3 border border-brand-charcoal/20 rounded-full text-sm font-medium text-brand-charcoal hover:bg-white transition-colors">
-                        <Download className="w-4 h-4" /> Download Tech Data Sheet
-                      </button>
-                      <button className="flex items-center gap-2 px-6 py-3 border border-brand-charcoal/20 rounded-full text-sm font-medium text-brand-charcoal hover:bg-white transition-colors">
-                        <Download className="w-4 h-4" /> Sample COA
-                      </button>
-                    </div>
-
-                  </motion.div>
-                ) : null
-              )}
-            </AnimatePresence>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {b2bProducts.map((product) => (
+              <div key={product.id} className="group relative rounded-[2rem] bg-white/50 border border-brand-charcoal/10 overflow-hidden aspect-[3/4] flex flex-col items-center justify-center p-8 hover:bg-white/80 transition-all duration-500 cursor-not-allowed shadow-lg">
+                <div className="absolute inset-0 bg-white/40 z-10 group-hover:bg-white/60 backdrop-blur-[2px] transition-all duration-500" />
+                <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-95 group-hover:scale-100">
+                  <span className="bg-brand-charcoal backdrop-blur-md text-white px-6 py-3 rounded-full text-xs tracking-[0.2em] uppercase font-bold shadow-xl border border-brand-charcoal/20">Coming Soon</span>
+                </div>
+                
+                <div className="relative w-full h-full z-0">
+                  <Image
+                    src={product.images && product.images[3] ? product.images[3] : product.image}
+                    alt={product.name}
+                    fill
+                    className="object-contain drop-shadow-xl opacity-90 group-hover:opacity-70 transition-opacity duration-500"
+                  />
+                </div>
+                <div className="absolute bottom-6 left-6 right-6 z-20 text-center pointer-events-none">
+                  <h3 className="font-serif text-lg text-brand-charcoal mb-1">{product.name}</h3>
+                  <p className="text-[10px] text-brand-green uppercase tracking-widest font-bold">500 gms</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
+
+      {/* 250G Category */}
+      <div className="bg-brand-green py-32 text-brand-beige">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="border-b border-brand-beige/20 pb-6 mb-16 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-serif text-brand-beige mb-3">250gms Collection</h2>
+              <p className="text-brand-beige/70 uppercase tracking-widest text-sm font-medium">Direct to Customers</p>
+            </div>
+            <div className="bg-brand-beige/10 border border-brand-beige/20 px-6 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] text-brand-beige shrink-0 shadow-sm">
+              Coming Soon
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {b2bProducts.map((product) => (
+              <div key={product.id} className="group relative rounded-[2rem] bg-white/10 border border-white/10 overflow-hidden aspect-[3/4] flex flex-col items-center justify-center p-8 hover:bg-white/15 transition-all duration-500 cursor-not-allowed shadow-2xl">
+                <div className="absolute inset-0 bg-black/40 z-10 group-hover:bg-black/60 transition-colors duration-500" />
+                <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-95 group-hover:scale-100">
+                  <span className="bg-brand-beige text-brand-charcoal px-6 py-3 rounded-full text-xs tracking-[0.2em] uppercase font-bold shadow-2xl">Coming Soon</span>
+                </div>
+                
+                <div className="relative w-full h-full z-0 opacity-90 group-hover:opacity-70 transition-opacity duration-500">
+                  <Image
+                    src={product.images && product.images[2] ? product.images[2] : product.image}
+                    alt={product.name}
+                    fill
+                    className="object-contain drop-shadow-[0_20px_20px_rgba(0,0,0,0.5)]"
+                  />
+                </div>
+                <div className="absolute bottom-6 left-6 right-6 z-20 text-center pointer-events-none">
+                  <h3 className="font-serif text-lg text-brand-beige mb-1">{product.name}</h3>
+                  <p className="text-[10px] text-brand-pink uppercase tracking-widest font-bold">250 gms</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      
     </div>
   );
 }

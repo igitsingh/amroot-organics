@@ -151,9 +151,9 @@ export function Footer() {
             
             {/* Contact Info */}
             <div className="space-y-3">
-              <a href="mailto:procurement@ourbrand.com" className="flex items-center gap-3 text-sm text-white/80 hover:text-brand-pink transition-colors">
+              <a href="mailto:procurement@amrootorganics.com" className="flex items-center gap-3 text-sm text-white/80 hover:text-brand-pink transition-colors">
                 <Mail className="w-4 h-4" />
-                procurement@ourbrand.com
+                procurement@amrootorganics.com
               </a>
               <div className="flex items-center gap-3 text-sm text-white/80">
                 <MapPin className="w-4 h-4" />

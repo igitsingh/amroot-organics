@@ -79,13 +79,7 @@ export function Header() {
         <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-white/20 mix-blend-overlay opacity-80" />
       </div>
 
-      {/* Announcement Bar */}
-      <div className={cn(
-        "w-full relative z-10 bg-brand-pink text-brand-charcoal text-[10px] sm:text-xs text-center tracking-widest font-bold uppercase shadow-sm transition-all duration-500 overflow-hidden flex items-center justify-center",
-        scrolled ? "h-0 py-0 opacity-0 border-none" : "h-[24px] sm:h-[32px] py-1 sm:py-2 opacity-100"
-      )}>
-        ourbrand.com is our only home
-      </div>
+      {/* Announcement Bar Removed */}
 
       <div className={cn(
         "w-full mx-auto px-6 lg:px-8 w-full flex items-center justify-between transition-all duration-500 relative z-50",
@@ -187,7 +181,7 @@ export function Header() {
             <Search className="w-5 h-5" strokeWidth={1.5} />
           </button>
           <Link
-            href="/export-quantity"
+            href="/export/quantity"
             className={cn(
               "px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-sm hover:shadow-md",
               scrolled ? "bg-brand-white text-brand-green hover:bg-brand-white/90" : "bg-black text-white hover:bg-black/80"
@@ -290,7 +284,7 @@ export function Header() {
               ))}
 
               <Link
-                href="/export-quantity"
+                href="/export/quantity"
                 onClick={() => setMobileMenuOpen(false)}
                 className="bg-brand-white text-brand-green px-6 py-4 rounded-full text-center mt-8 font-semibold hover:bg-brand-beige transition-colors"
               >
