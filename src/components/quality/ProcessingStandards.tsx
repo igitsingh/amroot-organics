@@ -1,69 +1,122 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Search, Sun, Settings, BugOff } from "lucide-react";
+import { Sparkles, ScanLine, Combine, Settings2, PackageCheck, Microscope } from "lucide-react";
 
-const processes = [
+const STANDARDS = [
   {
-    icon: <Sun className="w-6 h-6 text-brand-orange" />,
-    title: "Scientific Sun-Drying",
-    description: "Our rhizomes are cleaned and sun-dried on raised, hygienic platforms to maintain optimal moisture levels without sacrificing essential oils."
+    icon: <Sparkles className="w-5 h-5 text-brand-charcoal" />,
+    title: "Cleaning",
+    description: "Multi-stage high-pressure washing removes soil and surface impurities while preserving the rhizome's delicate volatile oils."
   },
   {
-    icon: <Search className="w-6 h-6 text-brand-green" />,
-    title: "Optical & Manual Sorting",
-    description: "Every batch passes through advanced optical color sorters and manual inspection to remove impurities, foreign matter, and off-spec roots."
+    icon: <ScanLine className="w-5 h-5 text-brand-charcoal" />,
+    title: "Sorting",
+    description: "Advanced optical color sorting and rigorous manual inspection eliminate off-spec roots and any foreign matter."
   },
   {
-    icon: <Settings className="w-6 h-6 text-brand-charcoal" />,
+    icon: <Combine className="w-5 h-5 text-brand-charcoal" />,
+    title: "Grinding",
+    description: "Temperature-controlled cryogenic and cool-grinding techniques prevent the degradation of heat-sensitive active compounds."
+  },
+  {
+    icon: <Settings2 className="w-5 h-5 text-brand-charcoal" />,
     title: "Metal Detection",
-    description: "Post-processing, all products are screened through multi-stage metal detectors and rare-earth magnets to ensure zero contamination."
+    description: "Post-processing screening through rare-earth magnets and inline metal detectors ensures absolute product safety."
   },
   {
-    icon: <BugOff className="w-6 h-6 text-brand-pink" />,
-    title: "Aflatoxin & Microbial Control",
-    description: "Strict environmental controls and hygiene protocols eliminate the risk of mold, aflatoxins, and harmful microbial growth during storage."
+    icon: <PackageCheck className="w-5 h-5 text-brand-charcoal" />,
+    title: "Packaging",
+    description: "Hermetic sealing in multi-wall kraft paper sacks with food-grade liners prevents moisture ingress during global transit."
+  },
+  {
+    icon: <Microscope className="w-5 h-5 text-brand-charcoal" />,
+    title: "Testing",
+    description: "Comprehensive third-party laboratory analysis confirms curcumin/gingerol levels, heavy metal compliance, and microbiological safety."
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+  }
+};
+
 export function ProcessingStandards() {
   return (
-    <section className="py-24 bg-brand-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="mb-16 md:mb-24 text-center max-w-3xl mx-auto">
-          <h2 className="text-sm font-bold text-brand-green uppercase tracking-widest mb-4">
-            Physical Processing
-          </h2>
-          <h3 className="text-3xl md:text-5xl font-serif text-brand-charcoal mb-6">
-            Engineered for Purity
-          </h3>
-          <p className="text-lg text-brand-charcoal/70">
-            From the moment the harvest reaches our facility, we deploy state-of-the-art technology to ensure that only the purest ingredients make it to your supply chain.
-          </p>
+    <section className="py-24 lg:py-32 bg-brand-beige/20 relative overflow-hidden">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
+        <div className="flex flex-col items-center text-center mb-20 lg:mb-24">
+          <motion.span 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-sans text-xs uppercase tracking-[0.2em] text-brand-charcoal/60 mb-6 block"
+          >
+            Processing Standards
+          </motion.span>
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="font-serif text-3xl sm:text-4xl lg:text-5xl text-brand-charcoal mb-6 leading-tight max-w-3xl"
+          >
+            Engineered for <span className="italic">Absolute Purity.</span>
+          </motion.h2>
+
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="font-sans text-brand-charcoal/70 text-sm sm:text-base max-w-2xl leading-relaxed"
+          >
+            Processed through carefully selected partner facilities operating under defined quality protocols.
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {processes.map((process, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-white rounded-[2rem] p-8 border border-brand-charcoal/10 hover:shadow-xl hover:shadow-brand-charcoal/5 transition-all group"
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+        >
+          {STANDARDS.map((standard, index) => (
+            <motion.div 
+              key={index}
+              variants={itemVariants}
+              className="group flex flex-col bg-brand-white border border-brand-charcoal/5 p-8 lg:p-10 transition-all duration-500 hover:shadow-2xl hover:shadow-brand-charcoal/5 hover:border-brand-charcoal/20"
             >
-              <div className="w-14 h-14 rounded-2xl bg-brand-beige flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                {process.icon}
+              <div className="mb-8 w-12 h-12 flex items-center justify-center rounded-full bg-brand-beige/50 group-hover:bg-brand-charcoal group-hover:text-brand-white transition-colors duration-500">
+                <div className="transition-colors duration-500 group-hover:text-brand-white [&>svg]:text-inherit">
+                  {standard.icon}
+                </div>
               </div>
-              <h4 className="text-xl font-serif font-medium text-brand-charcoal mb-3">
-                {process.title}
-              </h4>
-              <p className="text-brand-charcoal/70 leading-relaxed text-sm">
-                {process.description}
+              
+              <h3 className="font-serif text-2xl text-brand-charcoal mb-4">
+                {standard.title}
+              </h3>
+              
+              <p className="font-sans text-sm text-brand-charcoal/60 leading-relaxed">
+                {standard.description}
               </p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

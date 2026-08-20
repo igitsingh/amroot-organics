@@ -99,6 +99,19 @@ export function ProductsCatalog({ initialActiveProduct }: { initialActiveProduct
                     <Download className="w-4 h-4" /> Tech Data Sheet
                   </button>
                 </div>
+
+                {product.id === "lakadong-turmeric" && (
+                  <div className="mt-8 bg-white p-6 rounded-2xl shadow-sm border border-brand-green/20 relative overflow-hidden group">
+                    <div className="absolute top-0 left-0 w-1 h-full bg-brand-green" />
+                    <h4 className="text-xs font-bold text-brand-green uppercase tracking-wider mb-2">Industry Insights</h4>
+                    <p className="text-sm text-brand-charcoal/80 mb-4 leading-relaxed">
+                      The Government of India recently launched the ₹175 Crore <strong>"Mission Golden Spice"</strong> to transform Lakadong turmeric into a globally competitive luxury brand.
+                    </p>
+                    <Link href="/resources/mission-golden-spice" className="text-sm font-bold text-brand-green hover:text-[#023A33] flex items-center gap-1">
+                      Read about the initiative <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                )}
               </div>
 
             </div>

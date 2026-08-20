@@ -15,6 +15,7 @@ const NAV_LINKS = [
 
 const LEARN_LINKS = [
   { label: "Knowledge Hub", href: "/resources/knowledge-hub" },
+  { label: "Mission Golden Spice", href: "/resources/mission-golden-spice" },
   { label: "Curcumin Guide", href: "/resources/curcumin-guide" },
   { label: "Single-Origin Explained", href: "/resources/single-origin" },
   { label: "Research", href: "/resources/research" },

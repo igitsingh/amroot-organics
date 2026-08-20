@@ -21,6 +21,7 @@ const FOOTER_LINKS = {
   ],
   Resources: [
     { label: "Knowledge Hub", href: "/learn/knowledge-hub" },
+    { label: "Mission Golden Spice", href: "/resources/mission-golden-spice" },
     { label: "Import Guide", href: "/learn/import-guide" },
     { label: "Certifications", href: "/learn/certifications" },
     { label: "FAQs", href: "/learn/faqs" },

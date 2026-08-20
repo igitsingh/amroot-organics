@@ -5,11 +5,11 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Hero } from "@/components/home/Hero";
 import { TrustCards } from "@/components/home/TrustCards";
 import { RareProductsScroll } from "@/components/home/RareProductsScroll";
-import { ComingSoon } from "@/components/home/ComingSoon";
-import { ComparisonTable } from "@/components/home/ComparisonTable";
 import { Traceability } from "@/components/home/Traceability";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { WhyBuyersSwitch } from "@/components/home/WhyBuyersSwitch";
+import { PackagingScale } from "@/components/home/PackagingScale";
+import { ProcessTimeline } from "@/components/home/ProcessTimeline";
+import { QualityCompliance } from "@/components/home/QualityCompliance";
 
 export const metadata = constructMetadata({
   title: "Organic Spice Exporter India",
@@ -31,7 +31,10 @@ export default function Home() {
       
       <RareProductsScroll />
 
-      <ComparisonTable />
+      <WhyBuyersSwitch />
+      <PackagingScale />
+      <ProcessTimeline />
+      <QualityCompliance />
     </>
   );
 }
